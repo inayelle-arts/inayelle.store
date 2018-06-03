@@ -1,0 +1,106 @@
+@import "default";
+
+h1
+{
+	margin : 0 auto;
+	width  : fit-content;
+}
+
+#footer
+{
+	display : none !important;
+}
+
+#content
+{
+	display         : flex;
+	flex-direction  : column;
+	//flex-wrap       : nowrap;
+	justify-content : center;
+	align-items     : center;
+	align-content   : center;
+}
+
+#form
+{
+	//margin         : 0 auto;
+	display        : flex;
+	flex-direction : column;
+	
+	@include media-xs
+	{
+		width : 90%;
+		label
+		{
+			width      : 100%;
+			text-align : center;
+		}
+	}
+	
+	@include media-md
+	{
+		width : 70%;
+		label
+		{
+			width      : initial;
+			text-align : left;
+		}
+	}
+	
+	@include media-lg
+	{
+		width : 50%;
+	}
+	
+	label, input
+	{
+		display : block;
+		padding : 5px;
+	}
+	
+	label
+	{
+		font-size : 24px;
+	}
+	
+	input:focus, textarea:focus, select:focus
+	{
+		outline-offset     : 0 !important;
+		outline            : none !important;
+		box-shadow         : 0 0 3px $light-gray !important;
+		-moz-box-shadow    : 0 0 3px $light-gray !important;
+		-webkit-box-shadow : 0 0 3px $light-gray !important;
+	}
+	
+	input
+	{
+		height        : 2em;
+		font-size     : 18px;
+		border-radius : 5px;
+		border-color  : $border;
+		width         : 100%;
+	}
+	
+	#another
+	{
+		margin-top : 18px;
+		align-self : center;
+		width      : fit-content;
+	}
+	
+	#sign-in-button, #sign-up-button
+	{
+		@extend .no-user-select;
+		border     : 1px solid $light-gray;
+		font-size  : 16px;
+		margin-top : 20px;
+		align-self : center;
+	}
+	
+	[id$=error]
+	{
+		display   : block !important;
+		height    : 2em;
+		font-size : 14px;
+	}
+}

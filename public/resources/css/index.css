@@ -1,0 +1,528 @@
+@import url("https://fonts.googleapis.com/css?family=La+Belle+Aurore");
+@import url("https://fonts.googleapis.com/css?family=Source+Code+Pro");
+@import url("https://fonts.googleapis.com/css?family=Playfair+Display");
+@import url("https://fonts.googleapis.com/css?family=Spectral");
+html, body {
+  overflow-x: hidden;
+  min-width: 350px;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background: url("/resources/img/background.png") fixed;
+  color: #22232A;
+  font-family: "Spectral", serif;
+}
+
+a {
+  text-decoration: none;
+}
+a:hover, a:visited, a:link, a:active, a:focus {
+  color: initial !important;
+  text-decoration: none !important;
+}
+a:hover {
+  color: #505262;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.w-10 {
+  width: 10% !important;
+}
+
+.w-25 {
+  width: 25% !important;
+}
+
+.w-30 {
+  width: 30% !important;
+}
+
+.w-33 {
+  width: 33% !important;
+}
+
+.w-50 {
+  width: 50% !important;
+}
+
+.w-66 {
+  width: 66% !important;
+}
+
+.w-70 {
+  width: 70% !important;
+}
+
+.w-90 {
+  width: 90% !important;
+}
+
+.w-100 {
+  width: 100% !important;
+}
+
+::selection {
+  background-color: #46413B;
+  color: #F7F7F6;
+}
+
+::-moz-selection {
+  background-color: #46413B;
+  color: #F7F7F6;
+}
+
+#header {
+  min-width: 350px;
+  height: 80px;
+  min-height: 80px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background: url("/resources/img/background.png") fixed;
+  margin-bottom: 1px;
+  border-bottom: 1px solid #F7F7F6;
+  -webkit-transition: border-bottom-color 0.5s;
+  -moz-transition: border-bottom-color 0.5s;
+  -o-transition: border-bottom-color 0.5s;
+  transition: border-bottom-color 0.5s;
+}
+#header .container-fluid, #header .row {
+  min-height: 80px;
+}
+@media only screen and (min-width: 768px) {
+  #header li {
+    margin-right: 5px;
+  }
+}
+@media only screen and (min-width: 992px) {
+  #header li {
+    margin-right: 20px;
+  }
+}
+#header li:last-child {
+  margin-right: 0;
+}
+#header #logo {
+  text-align: center;
+  font-family: "La Belle Aurore", serif;
+  font-size: 35px;
+}
+#header #nav {
+  text-align: center;
+}
+#header #nav ul {
+  width: 100% !important;
+}
+#header #sign-options {
+  text-align: right;
+}
+@media only screen and (min-width: 1200px) {
+  #header #sign-options {
+    text-align: center;
+  }
+}
+#header #sign-options li {
+  display: inline-block;
+}
+#header #mobile-menu-button, #header #cart-button {
+  width: 100%;
+  text-align: center;
+}
+
+#content {
+  margin-top: 80px;
+}
+
+#footer {
+  margin-top: 15px;
+  min-height: 60px;
+  width: 100%;
+  min-width: 350px;
+  z-index: 10;
+  background: url("/resources/img/background.png") fixed;
+}
+#footer .helpings {
+  padding: 0;
+}
+@media only screen and (min-width: 0) {
+  #footer .helpings li {
+    padding: 15px 0 !important;
+    border-top: 1px solid rgba(15, 16, 15, 0.05);
+    font-size: 14px;
+    width: 100% !important;
+    text-align: center;
+  }
+}
+@media only screen and (min-width: 768px) {
+  #footer .helpings li {
+    padding: 0;
+    border-top: none;
+    width: initial !important;
+  }
+}
+@media only screen and (min-width: 0) {
+  #footer .socials {
+    padding: 15px 0;
+    text-align: center;
+  }
+}
+@media only screen and (min-width: 768px) {
+  #footer .socials {
+    padding: 0;
+    text-align: left;
+  }
+}
+#footer li {
+  display: inline-block;
+  margin-right: 10px !important;
+}
+#footer li:last-child {
+  margin-right: 0 !important;
+}
+
+#mobile-menu {
+  font-size: 20px;
+  color: #22232A;
+  display: none;
+  width: 100%;
+  z-index: 9999;
+  height: 100vh;
+  background: url("/resources/img/background.png") fixed;
+  -webkit-transition: height 1s;
+  -moz-transition: height 1s;
+  -o-transition: height 1s;
+  transition: height 1s;
+}
+#mobile-menu h3, #mobile-menu h4 {
+  display: inline-block;
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
+  min-width: 100%;
+}
+#mobile-menu a {
+  padding-left: 30px;
+}
+#mobile-menu li {
+  margin: 0;
+  border-bottom: 1px solid #22232A;
+}
+#mobile-menu li:last-child {
+  border-bottom: none;
+}
+#mobile-menu .mobile-helper {
+  text-align: right;
+  padding-right: 15px;
+  font-size: 14px;
+}
+
+#cart {
+  display: none;
+  position: fixed;
+  background: url("/resources/img/cart-background.png") fixed;
+  height: 100vh;
+  z-index: 11;
+  border-left: 1px solid transparent;
+  border-top: 1px solid transparent;
+  -webkit-transition: right 1s;
+  -moz-transition: right 1s;
+  -o-transition: right 1s;
+  transition: right 1s;
+}
+@media only screen and (min-width: 0) {
+  #cart {
+    top: 80px;
+    width: 100%;
+    right: -100%;
+  }
+}
+@media only screen and (min-width: 768px) {
+  #cart {
+    width: 30%;
+    right: -30%;
+  }
+}
+@media only screen and (min-width: 992px) {
+  #cart {
+    width: 25%;
+    right: 25%;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  #cart {
+    width: 20%;
+    right: -20%;
+  }
+}
+#cart .title, #cart #cart-emptyness {
+  width: 100%;
+  text-align: center;
+  text-transform: uppercase;
+}
+.button, #content .special-card .special-card-button {
+  width: fit-content;
+  padding: 5px;
+  text-align: center;
+  display: inline-block;
+  text-transform: uppercase;
+  cursor: pointer;
+  background: transparent;
+  -webkit-transition: background-color 1s;
+  -moz-transition: background-color 1s;
+  -o-transition: background-color 1s;
+  transition: background-color 1s;
+}
+.button:hover, #content .special-card .special-card-button:hover {
+  background: #dfdfdb;
+}
+.button:focus, #content .special-card .special-card-button:focus, .button:active, #content .special-card .special-card-button:active {
+  outline: none;
+}
+
+.text-button, .text-button-muted {
+  display: inline-block;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+.text-button:hover, .text-button-muted:hover {
+  text-decoration: underline;
+}
+.text-button:hover span, .text-button-muted:hover span {
+  border-bottom-color: #020104;
+}
+.text-button span, .text-button-muted span {
+  display: inline-block;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 2px;
+}
+
+.text-button-muted {
+  color: rgba(62, 66, 70, 0.55) !important;
+  text-transform: none !important;
+  -webkit-transition: color 0.7s;
+  -moz-transition: color 0.7s;
+  -o-transition: color 0.7s;
+  transition: color 0.7s;
+}
+.text-button-muted:hover {
+  color: #020104 !important;
+}
+
+.bottom-bordered {
+  border-bottom-color: rgba(15, 16, 15, 0.05) !important;
+}
+
+.left-bordered {
+  border-left-color: rgba(15, 16, 15, 0.05) !important;
+}
+
+.top-bordered {
+  border-top-color: rgba(15, 16, 15, 0.05) !important;
+}
+
+.no-user-select, #content .special-parallax, #content .about, #content .arrivals-parallax, #header {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.text-muted, #content .special-card .special-card-cost, #mobile-menu .mobile-helper {
+  color: rgba(62, 66, 70, 0.55);
+}
+
+.spacer {
+  min-height: 60px !important;
+  max-width: 1px !important;
+  content: " ";
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.no-pm {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#debug {
+  z-index: 100;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background-color: red;
+  color: black;
+}
+
+.card, #content .glasses, #content .t-shirt, #content .sweater, #content .shoes, .card-top-left, .card-left, #content .watch, .card-right, #content .tuxedo {
+  min-width: 300px;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: no-repeat;
+  background-size: auto;
+  text-shadow: 1px 1px 1px #020104;
+}
+.card .card-title, #content .glasses .card-title, #content .t-shirt .card-title, #content .sweater .card-title, #content .shoes .card-title, .card-top-left .card-title, .card-left .card-title, #content .watch .card-title, .card-right .card-title, #content .tuxedo .card-title, .card .card-subtitle, #content .glasses .card-subtitle, #content .t-shirt .card-subtitle, #content .sweater .card-subtitle, #content .shoes .card-subtitle, .card-top-left .card-subtitle, .card-left .card-subtitle, #content .watch .card-subtitle, .card-right .card-subtitle, #content .tuxedo .card-subtitle {
+  color: #F7F7F6;
+  width: fit-content;
+  font-size: 30px;
+  text-transform: uppercase;
+}
+.card .card-subtitle, #content .glasses .card-subtitle, #content .t-shirt .card-subtitle, #content .sweater .card-subtitle, #content .shoes .card-subtitle, .card-top-left .card-subtitle, .card-left .card-subtitle, #content .watch .card-subtitle, .card-right .card-subtitle, #content .tuxedo .card-subtitle {
+  font-size: 14px;
+}
+.card .button, .card #content .special-card .special-card-button, #content .special-card .card .special-card-button, #content .glasses .button, #content .glasses .special-card .special-card-button, #content .special-card .glasses .special-card-button, #content .t-shirt .button, #content .t-shirt .special-card .special-card-button, #content .special-card .t-shirt .special-card-button, #content .sweater .button, #content .sweater .special-card .special-card-button, #content .special-card .sweater .special-card-button, #content .shoes .button, #content .shoes .special-card .special-card-button, #content .special-card .shoes .special-card-button, .card-top-left .button, .card-top-left #content .special-card .special-card-button, #content .special-card .card-top-left .special-card-button, .card-left .button, .card-left #content .special-card .special-card-button, #content .special-card .card-left .special-card-button, #content .watch .button, #content .watch .special-card .special-card-button, #content .special-card .watch .special-card-button, .card-right .button, .card-right #content .special-card .special-card-button, #content .special-card .card-right .special-card-button, #content .tuxedo .button, #content .tuxedo .special-card .special-card-button, #content .special-card .tuxedo .special-card-button {
+  text-shadow: none;
+  margin-top: 10px;
+  padding: 15px 30px;
+  display: block;
+  background-color: rgba(0, 0, 0, 0.6);
+  border: 1px solid #F7F7F6;
+  color: #F7F7F6;
+}
+.card .button:hover, .card #content .special-card .special-card-button:hover, #content .special-card .card .special-card-button:hover, #content .glasses .button:hover, #content .glasses .special-card .special-card-button:hover, #content .special-card .glasses .special-card-button:hover, #content .t-shirt .button:hover, #content .t-shirt .special-card .special-card-button:hover, #content .special-card .t-shirt .special-card-button:hover, #content .sweater .button:hover, #content .sweater .special-card .special-card-button:hover, #content .special-card .sweater .special-card-button:hover, #content .shoes .button:hover, #content .shoes .special-card .special-card-button:hover, #content .special-card .shoes .special-card-button:hover, .card-top-left .button:hover, .card-top-left #content .special-card .special-card-button:hover, #content .special-card .card-top-left .special-card-button:hover, .card-left .button:hover, .card-left #content .special-card .special-card-button:hover, #content .special-card .card-left .special-card-button:hover, #content .watch .button:hover, #content .watch .special-card .special-card-button:hover, #content .special-card .watch .special-card-button:hover, .card-right .button:hover, .card-right #content .special-card .special-card-button:hover, #content .special-card .card-right .special-card-button:hover, #content .tuxedo .button:hover, #content .tuxedo .special-card .special-card-button:hover, #content .special-card .tuxedo .special-card-button:hover {
+  background-color: #F7F7F6;
+  color: #020104;
+}
+
+.card-right .card-title, #content .tuxedo .card-title, .card-right .card-subtitle, #content .tuxedo .card-subtitle {
+  padding: 30px;
+  align-self: flex-start;
+}
+.card-right .button, .card-right #content .special-card .special-card-button, #content .special-card .card-right .special-card-button, #content .tuxedo .button, #content .tuxedo .special-card .special-card-button, #content .special-card .tuxedo .special-card-button {
+  margin-bottom: 30px;
+  margin-right: 30px;
+  align-self: flex-end;
+}
+
+.card-left .card-title, #content .watch .card-title, .card-left .card-subtitle, #content .watch .card-subtitle {
+  padding: 30px;
+  align-self: flex-end;
+}
+.card-left .button, .card-left #content .special-card .special-card-button, #content .special-card .card-left .special-card-button, #content .watch .button, #content .watch .special-card .special-card-button, #content .special-card .watch .special-card-button {
+  margin-bottom: 30px;
+  margin-left: 30px;
+  align-self: flex-start;
+}
+
+.card-top-left .card-title, .card-top-left .card-subtitle {
+  padding: 30px;
+  align-self: flex-end;
+}
+.card-top-left .button, .card-top-left #content .special-card .special-card-button, #content .special-card .card-top-left .special-card-button {
+  margin-bottom: 30px;
+  margin-left: 30px;
+  align-self: flex-start;
+}
+
+@media only screen and (min-width: 0) {
+  #content .row {
+    padding: 0;
+  }
+  #content [class^=col] {
+    padding: 0;
+  }
+}
+@media only screen and (min-width: 992px) {
+  #content .row {
+    padding: 15px 0;
+  }
+  #content [class^=col] {
+    padding: 0 15px;
+  }
+}
+#content .arrivals-parallax {
+  height: 400px;
+  background: url("/resources/img/index/arrivals.jpg") no-repeat fixed center center;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+}
+#content .about {
+  height: 400px;
+  background: url("/resources/img/index/about.jpg") no-repeat fixed center center;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+}
+#content .tuxedo {
+  background: url("/resources/img/index/tuxedo.png");
+}
+#content .shoes {
+  background: url("/resources/img/index/shoes.png") 50%;
+}
+#content .sweater {
+  background: url("/resources/img/index/sweater.jpg") 100% 100%;
+}
+#content .watch {
+  background: url("/resources/img/index/watch.png");
+}
+#content .t-shirt {
+  background: url("/resources/img/index/tshirt.png");
+  background-size: cover;
+}
+#content .glasses {
+  background: url("/resources/img/index/glasses.png") 100%;
+}
+#content .special-parallax {
+  height: 400px;
+  background: url("/resources/img/index/special.jpg") no-repeat fixed center center;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-position: center -50%;
+}
+#content .special-card {
+  border: 1px solid rgba(15, 16, 15, 0.05);
+  width: 100%;
+  padding-bottom: 5%;
+}
+#content .special-card .special-card-img img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+#content .special-card .special-card-title {
+  display: inline-block;
+  padding-left: 5%;
+  padding-top: 5%;
+  width: 70%;
+  text-align: left;
+  font-size: 20px;
+}
+#content .special-card .special-card-cost {
+  display: inline-block;
+  padding-top: 5%;
+  width: 25%;
+  text-align: right;
+  font-size: 20px;
+}
+#content .special-card .special-card-subtitle {
+  font-size: 16px;
+  display: inline-block;
+  width: 45%;
+  padding: 5%;
+}
+#content .special-card .special-card-button {
+  border: 1px solid rgba(15, 16, 15, 0.05);
+  font-size: 16px !important;
+  display: inline-block !important;
+  width: 50% !important;
+  padding: 5% !important;
+}
+
+/*# sourceMappingURL=index.css.map */

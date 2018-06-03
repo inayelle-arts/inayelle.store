@@ -1,0 +1,142 @@
+@import "default";
+
+#content
+{
+	
+	@include media-xs
+	{
+		.row
+		{
+			padding : 0;
+		}
+		
+		[class^=col]
+		{
+			padding : 0;
+		}
+	}
+	
+	@include media-lg
+	{
+		.row
+		{
+			padding : 15px 0;
+		}
+		
+		[class^=col]
+		{
+			padding : 0 15px;
+		}
+	}
+	
+	.arrivals-parallax
+	{
+		@extend .no-user-select;
+		@include parallax("/resources/img/index/arrivals.jpg");
+	}
+	
+	.about
+	{
+		@extend .no-user-select;
+		@include parallax("/resources/img/index/about.jpg");
+	}
+	
+	.tuxedo
+	{
+		@extend .card-right;
+		background : url("/resources/img/index/tuxedo.png");
+	}
+	
+	.shoes
+	{
+		@extend .card;
+		background : url("/resources/img/index/shoes.png") 50%;
+	}
+	
+	.sweater
+	{
+		@extend .card;
+		background : url("/resources/img/index/sweater.jpg") 100% 100%;
+	}
+	
+	.watch
+	{
+		@extend .card-left;
+		background : url("/resources/img/index/watch.png");
+	}
+	
+	.t-shirt
+	{
+		@extend .card;
+		background      : url("/resources/img/index/tshirt.png");
+		background-size : cover;
+	}
+	
+	.glasses
+	{
+		@extend .card;
+		background : url("/resources/img/index/glasses.png") 100%;
+	}
+	
+	.special-parallax
+	{
+		@extend .no-user-select;
+		@include parallax("/resources/img/index/special.jpg");
+		background-position : center -50%;
+	}
+	
+	.special-card
+	{
+		border         : 1px solid $border;
+		width          : 100%;
+		padding-bottom : 5%;
+		
+		.special-card-img
+		{
+			img
+			{
+				display : block;
+				width   : 100%;
+				height  : auto;
+			}
+		}
+		
+		.special-card-title
+		{
+			display      : inline-block;
+			padding-left : 5%;
+			padding-top  : 5%;
+			width        : 70%;
+			text-align   : left;
+			font-size    : 20px;
+		}
+		
+		.special-card-cost
+		{
+			@extend .text-muted;
+			display     : inline-block;
+			padding-top : 5%;
+			width       : 25%;
+			text-align  : right;
+			font-size   : 20px;
+		}
+		
+		.special-card-subtitle
+		{
+			font-size : 16px;
+			display   : inline-block;
+			width     : 45%;
+			padding   : 5%;
+		}
+		
+		.special-card-button
+		{
+			@extend .button;
+			border    : 1px solid $border;
+			font-size : 16px !important;
+			display   : inline-block !important;
+			width     : 50% !important;
+			padding   : 5% !important;
+		}
+	}
+}

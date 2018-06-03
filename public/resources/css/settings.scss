@@ -1,0 +1,77 @@
+$width-styles : 10, 25, 30, 33, 50, 66, 70, 90, 100;
+$min-width-global : 350px;
+$xs : 0;
+$sm : 576px;
+$md : 768px;
+$lg : 992px;
+$xl : 1200px;
+
+@mixin width-styles($widthes : $width-styles)
+{
+	@each $width in $widthes
+	{
+		.w-#{$width}
+		{
+			width : $width + 0% !important;
+		}
+	}
+	
+}
+
+@mixin transition($property, $duration)
+{
+	-webkit-transition : $property $duration;
+	-moz-transition    : $property $duration;
+	-o-transition      : $property $duration;
+	transition         : $property $duration;
+}
+
+@mixin parallax($background-src)
+{
+	height                  : 400px;
+	background              : url($background-src) no-repeat fixed center center;
+	background-size         : cover;
+	-webkit-background-size : cover;
+	-moz-background-size    : cover;
+	-o-background-size      : cover;
+}
+
+@mixin media-xs()
+{
+	@media only screen and (min-width : $xs)
+	{
+		@content;
+	}
+}
+
+@mixin media-sm()
+{
+	@media only screen and (min-width : $sm)
+	{
+		@content;
+	}
+}
+
+@mixin media-md()
+{
+	@media only screen and (min-width : $md)
+	{
+		@content;
+	}
+}
+
+@mixin media-lg()
+{
+	@media only screen and (min-width : $lg)
+	{
+		@content;
+	}
+}
+
+@mixin media-xl()
+{
+	@media only screen and (min-width : $xl)
+	{
+		@content;
+	}
+}

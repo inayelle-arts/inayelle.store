@@ -1,0 +1,19 @@
+{
+	"name": "inayelle.store",
+	"version": "0.0.1",
+	"description": "course work",
+	"dependencies": {
+		"@types/jquery": "^3.3.2",
+		"@types/jquery.validation": "^1.16.4",
+		"sass": "^1.4.0",
+		"typescript": "^2.8.3"
+	},
+	"homepage": "https://github.com/inayelle-arts/inayelle.store",
+	"repository": "https://github.com/inayelle-arts/inayelle.store",
+	"author": {
+		"name": "Vladislav Kalashnikov-Travin",
+		"email": "inayelle.arts@gmail.com"
+	},
+	"license": "none",
+	"devDependencies": {}
+}
