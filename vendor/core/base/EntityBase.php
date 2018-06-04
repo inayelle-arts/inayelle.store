@@ -174,7 +174,7 @@ abstract class EntityBase
 		return $result;
 	}
 	
-	protected static function parseOne( array $data ) : EntityBase
+	public static function parseOne( array $data ) : EntityBase
 	{
 		$obj = new static();
 		

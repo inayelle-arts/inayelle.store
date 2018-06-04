@@ -97,7 +97,7 @@ class ProductEntity extends EntityBase
 	 * @return EntityBase
 	 * @throws \vendor\core\database\exception\DatabaseCommonException
 	 */
-	protected static function parseOne( array $data ) : EntityBase
+	public static function parseOne( array $data ) : EntityBase
 	{
 		/** @var ProductEntity $result */
 		$result = parent::parseOne( $data );

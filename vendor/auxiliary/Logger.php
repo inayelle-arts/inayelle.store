@@ -77,7 +77,7 @@ final class Logger
 		$log = "Date: " . date( DATE_RFC822 ) . self::ENDLINE;
 		$log .= "Message: {$message}" . self::ENDLINE;
 		$log .= self::SEPERATOR . self::ENDLINE;
-		$log .= $object . self::ENDLINE . self::SEPERATOR . self::ENDLINE;
+		$log .= $object ?? "" . self::ENDLINE . self::SEPERATOR . self::ENDLINE;
 		file_put_contents( self::$logPath, $log, FILE_APPEND );
 	}
 }

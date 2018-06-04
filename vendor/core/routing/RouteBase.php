@@ -55,7 +55,7 @@ abstract class RouteBase
 	
 	public function decodeJSON(string $jsonParameterName = "data") : array
 	{
-		return json_decode($_REQUEST[$jsonParameterName], true);
+		return json_decode($_REQUEST[$jsonParameterName], true)??[];
 	}
 	
 	public function addRule( callable $rule ) : void

@@ -49,7 +49,7 @@ class OrderEntity extends EntityBase
 	/** @var Shipping $shipping */
 	private $shipping;
 	
-	protected static function parseOne( array $data ) : EntityBase
+	public static function parseOne( array $data ) : EntityBase
 	{
 		/** @var OrderEntity $result */
 		$result = parent::parseOne( $data );

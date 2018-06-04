@@ -18,7 +18,19 @@ var Admin;
             });
             this.saveChangesButtonDOM.on("click", function () {
                 _this.rowList.forEach(function (value) {
-                    //					                      if( value. )
+                    if (value.pendingUpdate) {
+                        var json = value.toJSON();
+                        console.log(json);
+                        var data = json;
+                        $.ajax({
+                            url: "/admin/update",
+                            method: "POST",
+                            data: { data: data },
+                            success: function (response) {
+                                console.log(response);
+                            }
+                        });
+                    }
                 });
             });
         };
@@ -60,22 +72,24 @@ var Admin;
             entities.forEach(function (entity) {
                 var id = entity["id"];
                 delete entity["id"];
-                var row = new Row(id);
-                row.addPrimaryField(id);
+                var row = new Row(id, _this.tableSelectDOM.val());
+                row.addPrimaryField(id, "id");
                 for (var fieldKey in entity)
-                    row.addField(entity["" + fieldKey]);
+                    row.addField(entity["" + fieldKey], fieldKey);
+                _this.rowList.push(row);
                 _this.tableBodyDOM.append(row.getDOM());
             });
         };
         return Admin;
     }());
     var Row = /** @class */ (function () {
-        function Row(id, isNew) {
+        function Row(id, entityName, isNew) {
             if (isNew === void 0) { isNew = false; }
             this.needsUpdate = false;
             this.needsCreate = false;
             this.needsRemove = false;
             this.needsCreate = isNew;
+            this.entityName = entityName;
             this.dom = $(document.createElement("tr"));
             this.id = id;
             this.active = false;
@@ -111,26 +125,44 @@ var Admin;
             enumerable: true,
             configurable: true
         });
-        Row.prototype.addPrimaryField = function (value) {
-            var field = new Field(value, true);
+        Object.defineProperty(Row.prototype, "pendingDelete", {
+            get: function () {
+                return this.needsRemove;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Row.prototype.addPrimaryField = function (value, fieldName) {
+            var field = new Field(value, fieldName, true);
             this.fieldList.push(field);
             this.dom.append(field.getDOM());
         };
-        Row.prototype.addField = function (value) {
-            var field = new Field(value);
+        Row.prototype.addField = function (value, fieldName) {
+            var field = new Field(value, fieldName);
             this.fieldList.push(field);
             this.dom.append(field.getDOM());
         };
         Row.prototype.getDOM = function () {
             return this.dom;
         };
+        Row.prototype.toJSON = function () {
+            var result = "{\"entityName\": " + JSON.stringify(this.entityName) + ", ";
+            this.fieldList.forEach(function (value, index, array) {
+                result += value.toJSON();
+                if (index < array.length - 1)
+                    result += ",";
+            });
+            result += "}";
+            return result;
+        };
         Row.ON_HOVER_STYLE = "bg-primary";
         Row.ON_HOVER_TEXT_STYLE = "text-light";
         return Row;
     }());
     var Field = /** @class */ (function () {
-        function Field(value, primary) {
+        function Field(value, fieldName, primary) {
             if (primary === void 0) { primary = false; }
+            this.columnName = fieldName;
             this.isPrimary = primary;
             var tagName = primary ? "th" : "td";
             this.dom = $(document.createElement(tagName));
@@ -176,6 +208,12 @@ var Admin;
                     _this.valueDOM.removeClass("hidden");
                 }
             });
+        };
+        Field.prototype.toJSON = function () {
+            var result = "";
+            var value = this.valueDOM.text();
+            result += "\"" + this.columnName + "\": " + JSON.stringify(value);
+            return result;
         };
         Field.prototype.getDOM = function () {
             return this.dom;

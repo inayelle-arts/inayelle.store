@@ -40,7 +40,26 @@ namespace Admin
 			{
 				this.rowList.forEach( ( value: Row ) =>
 				                      {
-					                      //					                      if( value. )
+					                      if( value.pendingUpdate )
+					                      {
+						                      let json = value.toJSON();
+						
+						                      console.log( json );
+						
+						                      let data = json;
+						
+						                      $.ajax(
+							                      {
+								                      url: "/admin/update",
+								                      method: "POST",
+								                      data: {data},
+								                      success: ( response: string ) =>
+								                      {
+									                      console.log( response );
+								                      }
+							                      }
+						                      );
+					                      }
 				                      } );
 			} );
 		}
@@ -98,12 +117,14 @@ namespace Admin
 				                  let id = entity["id"];
 				                  delete entity["id"];
 				
-				                  let row = new Row( id );
+				                  let row = new Row( id, <string>this.tableSelectDOM.val() );
 				
-				                  row.addPrimaryField( id );
+				                  row.addPrimaryField( id, "id" );
 				
 				                  for( let fieldKey in entity )
-					                  row.addField( entity[`${fieldKey}`] );
+					                  row.addField( entity[`${fieldKey}`], fieldKey );
+				
+				                  this.rowList.push( row );
 				
 				                  this.tableBodyDOM.append( row.getDOM() );
 			                  } );
@@ -123,11 +144,14 @@ namespace Admin
 		private static ON_HOVER_STYLE: string = "bg-primary";
 		private static ON_HOVER_TEXT_STYLE: string = "text-light";
 		
+		protected readonly entityName: string;
+		
 		protected fieldList: Array<Field>;
 		
-		constructor( id: number, isNew: boolean = false )
+		constructor( id: number, entityName: string, isNew: boolean = false )
 		{
 			this.needsCreate = isNew;
+			this.entityName = entityName;
 			
 			this.dom = $( document.createElement( "tr" ) );
 			this.id = id;
@@ -168,16 +192,21 @@ namespace Admin
 			return this.needsCreate;
 		}
 		
-		public addPrimaryField( value: number )
+		public get pendingDelete(): boolean
 		{
-			let field = new Field( value, true );
+			return this.needsRemove;
+		}
+		
+		public addPrimaryField( value: number, fieldName: string )
+		{
+			let field = new Field( value, fieldName, true );
 			this.fieldList.push( field );
 			this.dom.append( field.getDOM() );
 		}
 		
-		public addField( value: any )
+		public addField( value: any, fieldName: string )
 		{
-			let field = new Field( value );
+			let field = new Field( value, fieldName );
 			this.fieldList.push( field );
 			this.dom.append( field.getDOM() );
 		}
@@ -185,6 +214,23 @@ namespace Admin
 		public getDOM(): JQuery<HTMLElement>
 		{
 			return this.dom;
+		}
+		
+		public toJSON(): string
+		{
+			let result = `{"entityName": ${JSON.stringify( this.entityName )}, `;
+			
+			this.fieldList.forEach( ( value: Field, index: number, array ) =>
+			                        {
+				                        result += value.toJSON();
+				
+				                        if( index < array.length - 1 )
+					                        result += ",";
+			                        } );
+			
+			result += "}";
+			
+			return result;
 		}
 	}
 	
@@ -196,8 +242,11 @@ namespace Admin
 		
 		protected isPrimary: boolean;
 		
-		constructor( value: any, primary: boolean = false )
+		protected readonly columnName: string;
+		
+		constructor( value: any, fieldName: string, primary: boolean = false )
 		{
+			this.columnName = fieldName;
 			this.isPrimary = primary;
 			
 			let tagName: string = primary ? "th" : "td";
@@ -262,6 +311,17 @@ namespace Admin
 					this.valueDOM.removeClass( "hidden" );
 				}
 			} );
+		}
+		
+		public toJSON(): string
+		{
+			let result = "";
+			
+			let value = <string>this.valueDOM.text();
+			
+			result += `"${this.columnName}": ${JSON.stringify( value )}`;
+			
+			return result;
 		}
 		
 		public getDOM(): JQuery<HTMLElement>

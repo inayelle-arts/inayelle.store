@@ -3,6 +3,7 @@
 namespace vendor\core\routing;
 
 use Exception;
+use Throwable;
 use vendor\auxiliary\ClassFactory;
 use vendor\auxiliary\Logger;
 use vendor\core\base\ControllerBase;

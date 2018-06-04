@@ -2,6 +2,7 @@
 
 namespace app\model;
 
+use vendor\auxiliary\Logger;
 use vendor\core\base\EntityBase;
 use vendor\core\database\exception\DatabaseCommonException;
 
@@ -36,5 +37,18 @@ class Admin extends App
 		$fieldList[] = "id";
 		
 		return array_merge( $fieldList, $entity::FIELDS );
+	}
+	
+	public function updateEntity( string $entityName, array $data )
+	{
+		/** @var EntityBase $entity */
+		
+		$entityName = "app\\model\\entity\\" . $entityName;
+		
+		$entity = new $entityName();
+		
+		$entity = $entity::parseOne( $data );
+		
+		$entity->update();
 	}
 }
