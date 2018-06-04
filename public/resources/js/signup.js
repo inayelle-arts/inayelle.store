@@ -2,7 +2,7 @@ var SignUp;
 (function (SignUp) {
     var Form = /** @class */ (function () {
         function Form() {
-            this.formDOM = $("#form");
+            this.formDOM = $("#login-form");
             this.loginDOM = $("#login");
             this.passwordDOM = $("#password");
             this.submitButton = $("#sign-up-button");

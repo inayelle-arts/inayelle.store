@@ -61,7 +61,7 @@ final class Logger
 		return $result . "|" . $string . self::ENDLINE;
 	}
 	
-	public static function log( $message, Throwable $throwable = null ) : void
+	public static function log( string $message, Throwable $throwable = null ) : void
 	{
 		if( !self::$enabled )
 			return;
@@ -69,6 +69,15 @@ final class Logger
 		$log = "Date: " . date( DATE_RFC822 ) . self::ENDLINE;
 		$log .= self::writeException( $throwable );
 		$log .= self::SEPERATOR;
+		file_put_contents( self::$logPath, $log, FILE_APPEND );
+	}
+	
+	public static function message( string $message = "", $object = null ) : void
+	{
+		$log = "Date: " . date( DATE_RFC822 ) . self::ENDLINE;
+		$log .= "Message: {$message}" . self::ENDLINE;
+		$log .= self::SEPERATOR . self::ENDLINE;
+		$log .= $object . self::ENDLINE . self::SEPERATOR . self::ENDLINE;
 		file_put_contents( self::$logPath, $log, FILE_APPEND );
 	}
 }

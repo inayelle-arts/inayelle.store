@@ -4,6 +4,7 @@ namespace app\controller;
 
 use app\model\exception\AlreadyVerifiedException;
 use app\model\exception\BadVerificationCodeException;
+use app\model\exception\UserNotFoundException;
 use app\model\Sign;
 use vendor\auxiliary\Email;
 use vendor\auxiliary\SessionManager;
@@ -58,19 +59,19 @@ class SignController extends AppController
 		$login    = $data["login"];
 		$password = $data["password_hash"];
 		
-		if (!$this->model->validateSignUp($login))
+		if( !$this->model->validateSignUp( $login ) )
 		{
 			echo "Login already taken";
 			return;
 		}
 		
-		if (!$this->model->registerUser($login, $password))
+		if( !$this->model->registerUser( $login, $password ) )
 		{
 			echo "Login already taken";
 			return;
 		}
 		
-		SessionManager::setSessionProperty("user", $login);
+		SessionManager::setSessionProperty( "user", $login );
 		
 		echo "success";
 	}
@@ -82,11 +83,11 @@ class SignController extends AppController
 		header( 'Location: /' );
 	}
 	
-	public function verifyAction() : void {}
+	public function verifyAction() : void { }
 	
 	public function verifiedAction() : void
 	{
-		$code = $this->route->getParameter("code");
+		$code    = $this->route->getParameter( "code" );
 		$message = "";
 		
 		try
@@ -94,15 +95,61 @@ class SignController extends AppController
 			$this->model->verifyUser( $code );
 			$message = "User was successfully verified!";
 		}
-		catch(AlreadyVerifiedException $exception)
+		catch( AlreadyVerifiedException $exception )
 		{
 			$message = "Activation code was already used.";
 		}
-		catch(BadVerificationCodeException $exception)
+		catch( BadVerificationCodeException $exception )
 		{
 			$message = "Verification code is not valid.";
 		}
 		
-		$this->setAttribute("message", $message);
+		$this->setAttribute( "message", $message );
+	}
+	
+	public function resetAction() : void
+	{
+		if( $this->route->getMethodType() === "GET" )
+			return;
+		
+		$this->setViewable( false );
+		
+		$data = $this->route->decodeJSON();
+		
+		$login = $data["email"];
+		
+		try
+		{
+			$this->model->sendResetConfirmation( $login );
+		}
+		catch( UserNotFoundException $exception )
+		{
+			echo "No user with such email found.";
+		}
+		
+		echo "The mail was sent to you. Checkout your email and confirm password reset.";
+	}
+	
+	public function resetConfirmAction() : void
+	{
+		if( $this->route->getMethodType() == "GET" )
+		{
+			$code = $this->route->getParameter( "code" );
+			$this->setAttribute( "code", $code );
+			return;
+		}
+		
+		$this->setViewable(false);
+		
+		$data = $this->route->decodeJSON();
+		$code = $data["code"];
+		$password = $data["password"];
+		
+		$result = $this->model->resetConfirm($code, $password);
+		
+		if ($result)
+			echo "success";
+		else
+			echo "Invalid confirmation code. Contact an administrator at `Contact` panel";
 	}
 }

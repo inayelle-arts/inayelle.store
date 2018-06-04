@@ -4,9 +4,9 @@
 	<div class="card-title">
 		new arrivals
 	</div>
-	<div class="button">
+	<a class="button" href="/arrivals" style="color: white !important;">
 		take a look
-	</div>
+	</a>
 </div>
 
 <div class="container">

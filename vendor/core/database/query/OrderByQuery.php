@@ -23,4 +23,17 @@ class OrderByQuery extends QueryBase
 		return $this;
 	}
 	
+	public function descending() : self
+	{
+		$this->statement .= "DESC ";
+		
+		return $this;
+	}
+	
+	public function ascending() : self
+	{
+		$this->statement .= "ASC ";
+		
+		return $this;
+	}
 }

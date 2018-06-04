@@ -4,64 +4,43 @@ namespace app\model\entity;
 
 use vendor\auxiliary\SaltGenerator;
 use vendor\core\base\EntityBase;
+use vendor\core\base\GetSet;
 
 /**
  * Class UserEntity
  * @package app\model\entity
- * @property string $login
+ * @property string $email
  * @property string $password_hash
- * @property int    $verified
  * @property string $verify_code
+ * @property string $reset_code
+ * @property int    $permission_id
  */
 class UserEntity extends EntityBase
 {
+	use GetSet;
+	
 	/** @var string $login */
-	private $login;
+	private $email;
 	
 	/** @var string $password_hash */
 	private $password_hash;
 	
-	/** @var int $verified */
-	private $verified;
-	
 	/** @var string $verify_code */
 	private $verify_code;
+	
+	/** @var string $verify_code */
+	private $reset_code;
+	
+	/** @var int $permission_id */
+	private $permission_id;
 	
 	protected const TABLE  = "users";
 	protected const FIELDS =
 		[
-			"login",
+			"email",
 			"password_hash",
-			"verified",
-			"verify_code"
+			"verify_code",
+			"reset_code",
+			"permission_id"
 		];
-	
-	public function __construct( string $login = "", string $passwordHash = "" )
-	{
-		$this->login         = $login;
-		$this->password_hash = $passwordHash;
-		$this->verified      = 0;
-		$this->verify_code   = SaltGenerator::generate();
-	}
-	
-	public function __toString() : string
-	{
-		return
-			"User : {" .
-			"id: {$this->id}, " .
-			"login: {$this->login}, " .
-			"password: {$this->password_hash}}, " .
-			"verified: {$this->verified}, " .
-			"verify_code: {$this->verify_code} }";
-	}
-	
-	public function __get( string $name )
-	{
-		return $this->$name;
-	}
-	
-	public function __set( string $name, $value )
-	{
-		$this->$name = $value;
-	}
 }

@@ -283,7 +283,7 @@ String.prototype.hashCode = function () {
         return result;
     for (var i = 0; i < length; i++) {
         char = this.charCodeAt(i);
-        result = ((result << 5) - result) + char;
+        result = result * 31 + char;
         result |= 0;
     }
     return result;

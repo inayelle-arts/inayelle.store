@@ -1,0 +1,124 @@
+@import "default";
+
+@include media-xs
+{
+	h1
+	{
+		width      : 100%;
+		text-align : center;
+	}
+	
+	[class^=col]
+	{
+		padding : 0;
+	}
+}
+
+@include media-md
+{
+	h1
+	{
+		width      : fit-content;
+		text-align : left;
+	}
+	
+	[class^=col]
+	{
+		padding : 15px;
+	}
+}
+
+.product
+{
+	width : 100%;
+	
+	@include media-xs
+	{
+		border : none;
+	}
+	
+	@include media-md
+	{
+		border : 1px solid $border;
+	}
+	
+	.image
+	{
+		width : 100%;
+	}
+	
+	.name, .cost
+	{
+		padding-top : 10px;
+		width       : 100%;
+		font-size   : 18px;
+	}
+	
+	.name
+	{
+		@include media-xs
+		{
+			text-align   : center;
+			padding-left : 0;
+		}
+		
+		@include media-lg
+		{
+			text-align   : left;
+			padding-left : 10px;
+		}
+	}
+	
+	.cost
+	{
+		@extend .text-muted;
+		
+		@include media-xs
+		{
+			text-align   : center;
+			padding-left : 0;
+		}
+		
+		@include media-lg
+		{
+			text-align    : right;
+			padding-right : 10px;
+		}
+	}
+	
+	.description
+	{
+		font-size : 15px;
+		@extend .name;
+	}
+	
+	.checkout
+	{
+		@extend .button;
+		&:hover
+		{
+			background-color : $light-black !important;
+			color            : $white !important;
+		}
+		display : block;
+		border  : 2px solid $border;
+		
+		@include media-xs
+		{
+			font-size : 18px;
+			margin    : 10px auto;
+		}
+		
+		@include media-md
+		{
+			font-size : 16px;
+		}
+		
+		@include media-lg
+		{
+			font-size    : 13px;
+			margin-left  : auto;
+			margin-right : 10px;
+		}
+	}
+}

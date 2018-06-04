@@ -66,6 +66,15 @@ abstract class QueryBase
 		return (int)$this->pdo->lastInsertId( $idColumnName );
 	}
 	
+	public function limit(int $count) : self
+	{
+		$this->statement .= "LIMIT :limitcount";
+		
+		$this->args["limitcount"] = $count;
+		
+		return $this;
+	}
+	
 	public final function __toString() : string
 	{
 		return $this->statement;

@@ -28,7 +28,7 @@ $refresh = rand();
 </div>
 
 <header id="header">
-	
+
 	<div class="container-fluid">
 		<div class="row justify-content-between align-items-center">
 
@@ -41,18 +41,18 @@ $refresh = rand();
 			<div class="col-4 d-none d-lg-inline-block" id="nav">
 				<ul>
 					<li class="d-none d-md-inline-block">
-						<div class="text-button">
+						<a class="text-button" href="/">
 							<span>
 								categories
 							</span>
-						</div>
+						</a>
 					</li>
 					<li class="d-none d-md-inline-block">
-						<div class="text-button">
+						<a class="text-button" href="/arrivals">
 							<span>
 								arrivals
 							</span>
-						</div>
+						</a>
 					</li>
 					<li class="d-none d-md-inline-block">
 						<div class="text-button">
@@ -118,20 +118,11 @@ $refresh = rand();
 		<ul>
 			<? if( $__isUser__ ): ?>
 				<li>
-					<div class="row justify-content-between align-items-center">
-						<div class="col-6">
-							<a href="#" class="button">
-								<h3>
-									<?= $__userLogin__ ?>
-								</h3>
-							</a>
-						</div>
-						<div class="col-6">
-							<div class="mobile-helper">
-								your profile
-							</div>
-						</div>
-					</div>
+					<a href="#" class="button">
+						<h3>
+							<?= $__userLogin__ ?>
+						</h3>
+					</a>
 				</li>
 				<li>
 					<h3>
@@ -152,7 +143,10 @@ $refresh = rand();
 			<? endif; ?>
 			<li>
 				<h4>
-					<a href="#" class="button">categories</a>
+					<a href="/" class="button">categories</a>
+				</h4>
+				<h4>
+					<a href="/arrivals" class="button">arrivals</a>
 				</h4>
 			</li>
 		</ul>
@@ -164,62 +158,62 @@ $refresh = rand();
 
 <div id="content-footer">
 
-<div id="content">
-	
-	<?= $__content__ ?? "" ?>
+	<div id="content">
+		
+		<?= $__content__ ?? "" ?>
 
-</div>
-
-<footer id="footer">
-	<div class="container-fluid">
-		<div class="row align-items-center justify-content-between">
-			<div class="col-12 col-md offset-0 offset-md-2 socials">
-				<ul>
-					<li>
-						<div class="text-button-muted">
-							<i class="fab fa-facebook-square fa-2x"></i>
-						</div>
-					</li>
-					<li class="text-muted">
-						<div class="text-button-muted">
-							<i class="fab fa-instagram fa-2x"></i>
-						</div>
-					</li>
-					<li class="text-muted">
-						<div class="text-button-muted">
-							<i class="fab fa-pinterest-p fa-2x"></i>
-						</div>
-					</li>
-				</ul>
-			</div>
-			<div class="col-12 col-md helpings">
-				<ul>
-					<li>
-						<div class="text-button-muted">
-							shipping & returns
-						</div>
-					</li>
-					<li>
-						<div class="text-button-muted">
-							size guide
-						</div>
-					</li>
-					<li>
-						<div class="text-button-muted">
-							about
-						</div>
-					</li>
-					<li>
-						<div class="text-muted">
-							@inayelle.arts 2018
-						</div>
-					</li>
-				</ul>
-			</div>
-			<div class="col spacer"></div>
-		</div>
 	</div>
-</footer>
+
+	<footer id="footer">
+		<div class="container-fluid">
+			<div class="row align-items-center justify-content-between">
+				<div class="col-12 col-md offset-0 offset-md-2 socials">
+					<ul>
+						<li>
+							<div class="text-button-muted">
+								<i class="fab fa-facebook-square fa-2x"></i>
+							</div>
+						</li>
+						<li class="text-muted">
+							<div class="text-button-muted">
+								<i class="fab fa-instagram fa-2x"></i>
+							</div>
+						</li>
+						<li class="text-muted">
+							<div class="text-button-muted">
+								<i class="fab fa-pinterest-p fa-2x"></i>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="col-12 col-md helpings">
+					<ul>
+						<li>
+							<div class="text-button-muted">
+								shipping & returns
+							</div>
+						</li>
+						<li>
+							<div class="text-button-muted">
+								size guide
+							</div>
+						</li>
+						<li>
+							<div class="text-button-muted">
+								about
+							</div>
+						</li>
+						<li>
+							<div class="text-muted">
+								@inayelle.arts 2018
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="col spacer"></div>
+			</div>
+		</div>
+	</footer>
 
 </div>
 

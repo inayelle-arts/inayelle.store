@@ -10,7 +10,7 @@ namespace SignUp
 		
 		constructor()
 		{
-			this.formDOM = <JQuery<HTMLFormElement>>$( "#form" );
+			this.formDOM = <JQuery<HTMLFormElement>>$( "#login-form" );
 			this.loginDOM = <JQuery<HTMLInputElement>>$( "#login" );
 			this.passwordDOM = <JQuery<HTMLInputElement>>$( "#password" );
 			this.submitButton = $( "#sign-up-button" );

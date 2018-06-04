@@ -23,6 +23,8 @@ define( "MODEL__", APP__ . "/model" );
 define( "VIEW__", APP__ . "/view" );
 define( "LAYOUT__", APP__ . "/layout" );
 define( "CONFIG__", ROOT__ . "/config" );
+define( "TRUE", 1 );
+define( "FALSE", 0 );
 
 final class Application
 {

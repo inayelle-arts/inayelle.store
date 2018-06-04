@@ -7,23 +7,16 @@ use Exception;
 
 class TypeMismatchException extends Exception
 {
-	private $item;
 	private $gotType;
 	private $expectedType;
 	
-	public function __construct( $item, string $expectedType )
+	public function __construct( string $expectedType, string $gotType )
 	{
 		$this->expectedType = $expectedType;
-		$this->gotType      = get_class( $item );
-		$this->item         = $item;
+		$this->gotType      = $gotType;
 		
 		$message = "Type mismatch. Expected type: [{$expectedType}], got [" . $this->gotType . "]";
 		parent::__construct( $message );
-	}
-	
-	public function getItem()
-	{
-		return $this->item;
 	}
 	
 	public function getExpectedType()

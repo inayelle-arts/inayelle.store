@@ -8,7 +8,7 @@ $refresh = rand();
 
 <h1>Sign up</h1>
 
-<form action="#" id="form">
+<form action="#" id="login-form">
 	<label for="login">Email</label>
 	<input type="email" id="login" name="login" minlength="3" required>
 	<label id="login-error" class="error" for="login" style=""></label>

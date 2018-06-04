@@ -6,8 +6,12 @@ final class SaltGenerator
 {
 	private function __construct() { }
 	
-	public static function generate() : string
+	public static function generate(int $symbolCount = null) : string
 	{
-		return uniqid( (string)rand(), true );
+		$result = uniqid( (string)rand(), true );
+		if ($symbolCount !== null)
+			$result = substr($result, strlen($result) - $symbolCount - 1);
+		
+		return $result;
 	}
 }
