@@ -1,0 +1,9 @@
+Date: Mon, 04 Jun 18 18:50:37 +0300
+|Exception
+|Type: vendor\exception\FileNotFoundException
+|Message: [CRITICAL] File <D:\Files\Documents\Solutions\PHP\inayelle.store/app/view/admin/table.php> not found
+|File: D:\Files\Documents\Solutions\PHP\inayelle.store\vendor\core\View.php
+|Line: 28
+|Code: 0
+|Inner exception: null
+------------------------------------------------------------------------------------------------------------------------------

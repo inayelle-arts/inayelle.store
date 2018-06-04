@@ -16,9 +16,9 @@ class ImageEntity extends EntityBase
 {
 	use GetSet;
 	
-	protected const TABLE = "images_storage";
+	public const TABLE = "images_storage";
 	
-	protected const FIELDS =
+	public const FIELDS =
 		[
 			"product_id",
 			"path",
@@ -28,11 +28,11 @@ class ImageEntity extends EntityBase
 	public function __construct() { }
 	
 	/** @var int $product_id */
-	private $product_id;
+	protected $product_id;
 	
 	/** @var string $path */
-	private $path;
+	protected $path;
 	
 	/** @var int $primary_image */
-	private $primary_image;
+	protected $primary_image;
 }

@@ -10,7 +10,11 @@ $route = new AutoRoute( $pattern, RoutePriority::MIDDLE );
 
 $route->addRule( function()
 {
-	throw new ErrorPageSignal( 403 );
+	/** @var \app\model\entity\UserEntity $user */
+	$user = \vendor\auxiliary\SessionManager::getSessionProperty( "user" );
+	if( $user === null || $user->permission_id !== \app\model\entity\UserPermission::ADMINISTRATOR )
+		throw new ErrorPageSignal( 403 );
+	return false;
 } );
 
 return $route;

@@ -20,22 +20,22 @@ class UserEntity extends EntityBase
 	use GetSet;
 	
 	/** @var string $login */
-	private $email;
+	protected $email;
 	
 	/** @var string $password_hash */
-	private $password_hash;
+	protected $password_hash;
 	
 	/** @var string $verify_code */
-	private $verify_code;
+	protected $verify_code;
 	
 	/** @var string $verify_code */
-	private $reset_code;
+	protected $reset_code;
 	
 	/** @var int $permission_id */
-	private $permission_id;
+	protected $permission_id;
 	
-	protected const TABLE  = "users";
-	protected const FIELDS =
+	public const TABLE  = "users";
+	public const FIELDS =
 		[
 			"email",
 			"password_hash",

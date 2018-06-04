@@ -16,17 +16,17 @@ class Shipping extends EntityBase
 {
 	use GetSet;
 	
-	protected const TABLE = "shippings";
+	public const TABLE = "shippings";
 	
-	protected const FIELDS =
+	public const FIELDS =
 		[
 			"address",
 			"shipping_type"
 		];
 	
 	/** @var string $address */
-	private $address;
+	protected $address;
 	
 	/** @var int $shipping_type */
-	private $shipping_type;
+	protected $shipping_type;
 }

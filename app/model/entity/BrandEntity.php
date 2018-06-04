@@ -16,14 +16,14 @@ class BrandEntity extends EntityBase
 	use GetSet;
 	
 	/** @var string $name */
-	private $name;
+	protected $name;
 	
 	/** @var string $description */
-	private $description;
+	protected $description;
 	
-	protected const TABLE = "brands";
+	public const TABLE = "brands";
 	
-	protected const FIELDS =
+	public const FIELDS =
 		[
 			"name",
 			"description"

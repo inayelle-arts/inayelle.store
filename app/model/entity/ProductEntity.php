@@ -25,9 +25,9 @@ class ProductEntity extends EntityBase
 {
 	use GetSet;
 	
-	protected const TABLE = "products";
+	public const TABLE = "products";
 	
-	protected const FIELDS =
+	public const FIELDS =
 		[
 			"name",
 			"description",
@@ -41,38 +41,38 @@ class ProductEntity extends EntityBase
 		];
 	
 	/** @var string $name */
-	private $name;
+	protected $name;
 	
 	/** @var string $description */
-	private $description;
+	protected $description;
 	
 	/** @var int $cost
 	 * IN CENTES
 	 */
-	private $cost;
+	protected $cost;
 	
 	/** @var int $type_id */
-	private $type_id;
+	protected $type_id;
 	
 	/** @var int $in_stock */
-	private $in_stock;
+	protected $in_stock;
 	
 	/** @var int $discount
 	 * IN PERCENTS
 	 */
-	private $discount;
+	protected $discount;
 	
 	/** @var int $size_id */
-	private $size_id;
+	protected $size_id;
 	
 	/** @var int $brand_id */
-	private $brand_id;
+	protected $brand_id;
 	
 	/** @var BrandEntity $brand */
 	private $brand;
 	
 	/** @var string $color */
-	private $color;
+	protected $color;
 	
 	/** @var ImageEntity[] $images */
 	private $images;

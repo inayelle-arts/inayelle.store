@@ -2,6 +2,7 @@
 
 namespace app\controller;
 
+use app\model\entity\UserEntity;
 use app\model\exception\AlreadyVerifiedException;
 use app\model\exception\BadVerificationCodeException;
 use app\model\exception\UserNotFoundException;
@@ -39,11 +40,11 @@ class SignController extends AppController
 		$login    = $data["login"];
 		$password = $data["password_hash"];
 		
-		$success = $this->model->validateSignIn( $login, $password );
+		$user = $this->model->validateSignIn( $login, $password );
 		
-		if( $success )
+		if( $user !== null )
 		{
-			SessionManager::setSessionProperty( "user", $login );
+			SessionManager::setSessionProperty( "user", $user );
 			echo "success";
 		}
 		else
@@ -65,13 +66,9 @@ class SignController extends AppController
 			return;
 		}
 		
-		if( !$this->model->registerUser( $login, $password ) )
-		{
-			echo "Login already taken";
-			return;
-		}
+		$user = $this->model->registerUser( $login, $password );
 		
-		SessionManager::setSessionProperty( "user", $login );
+		SessionManager::setSessionProperty( "user", $user );
 		
 		echo "success";
 	}
@@ -139,15 +136,15 @@ class SignController extends AppController
 			return;
 		}
 		
-		$this->setViewable(false);
+		$this->setViewable( false );
 		
-		$data = $this->route->decodeJSON();
-		$code = $data["code"];
+		$data     = $this->route->decodeJSON();
+		$code     = $data["code"];
 		$password = $data["password"];
 		
-		$result = $this->model->resetConfirm($code, $password);
+		$result = $this->model->resetConfirm( $code, $password );
 		
-		if ($result)
+		if( $result )
 			echo "success";
 		else
 			echo "Invalid confirmation code. Contact an administrator at `Contact` panel";

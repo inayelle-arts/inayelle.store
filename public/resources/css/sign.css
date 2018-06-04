@@ -20,7 +20,7 @@ a {
   text-decoration: none;
 }
 a:hover, a:visited, a:link, a:active, a:focus {
-  color: initial !important;
+  color: initial;
   text-decoration: none !important;
 }
 a:hover {
@@ -170,6 +170,9 @@ ul {
     width: initial !important;
   }
 }
+#footer .helpings a:link {
+  color: rgba(62, 66, 70, 0.55) !important;
+}
 @media only screen and (min-width: 0) {
   #footer .socials {
     padding: 15px 0;
@@ -288,18 +291,18 @@ ul {
   outline: none;
 }
 
-.text-button, .text-button-muted {
+.text-button {
   display: inline-block;
   cursor: pointer;
   text-transform: uppercase;
 }
-.text-button:hover, .text-button-muted:hover {
+.text-button:hover {
   text-decoration: underline;
 }
-.text-button:hover span, .text-button-muted:hover span {
+.text-button:hover span {
   border-bottom-color: #020104;
 }
-.text-button span, .text-button-muted span {
+.text-button span {
   display: inline-block;
   border-bottom: 1px solid transparent;
   padding-bottom: 2px;
@@ -313,7 +316,7 @@ ul {
   -o-transition: color 0.7s;
   transition: color 0.7s;
 }
-.text-button-muted:hover {
+.text-button-muted:hover a:link {
   color: #020104 !important;
 }
 

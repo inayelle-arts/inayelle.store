@@ -7,7 +7,7 @@ use vendor\core\base\GetSet;
 
 
 /**
- * Class OrderedProduct
+ * Class OrderedProductEntity
  * @package app\model\entity
  * @property int $product_id
  * @property int $order_id
@@ -16,13 +16,13 @@ use vendor\core\base\GetSet;
  * @property ProductEntity $product
  * @property OrderEntity $order
  */
-class OrderedProduct extends EntityBase
+class OrderedProductEntity extends EntityBase
 {
 	use GetSet;
 	
-	protected const TABLE = "ordered_products";
+	public const TABLE = "ordered_products";
 	
-	protected const FIELDS =
+	public const FIELDS =
 		[
 			"product_id",
 			"order_id",
@@ -32,16 +32,16 @@ class OrderedProduct extends EntityBase
 	
 	
 	/** @var int $product_id */
-	private $product_id;
+	protected $product_id;
 	
 	/** @var int $order_id */
-	private $order_id;
+	protected $order_id;
 	
 	/** @var int $count */
-	private $count;
+	protected $count;
 	
 	/** @var int $total_cost */
-	private $total_cost;
+	protected $total_cost;
 	
 	/** @var ProductEntity $product */
 	private $product;

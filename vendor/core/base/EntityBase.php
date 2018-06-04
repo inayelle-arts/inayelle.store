@@ -11,8 +11,8 @@ use vendor\core\database\SQLBuilder;
  */
 abstract class EntityBase
 {
-	protected const FIELDS = self::FIELDS;
-	protected const TABLE  = self::TABLE;
+	public const FIELDS = self::FIELDS;
+	public const TABLE  = self::TABLE;
 	
 	/** @var int $id */
 	protected $id;
@@ -184,6 +184,27 @@ abstract class EntityBase
 		$obj->id = $data["id"];
 		
 		return $obj;
+	}
+	
+	public function toJSON() : string
+	{
+		$result = "{";
+		
+		foreach( static::FIELDS as $fieldName )
+		{
+			$jsonedField = json_encode( $fieldName );
+			$jsonedValue = json_encode( $this->$fieldName );
+			$result      .= "{$jsonedField}: {$jsonedValue},";
+		}
+		
+		$result[strlen( $result ) - 1] = "}";
+		
+		return $result;
+	}
+	
+	public function exposeFields() : array
+	{
+		return get_object_vars( $this );
 	}
 	
 	public function __toString() : string

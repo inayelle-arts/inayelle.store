@@ -20,9 +20,9 @@ class OrderEntity extends EntityBase
 {
 	use GetSet;
 	
-	protected const TABLE = "orders";
+	public const TABLE = "orders";
 	
-	protected const FIELDS =
+	public const FIELDS =
 		[
 			"user_id",
 			"order_date",
@@ -32,22 +32,22 @@ class OrderEntity extends EntityBase
 		];
 	
 	/** @var int $user_id */
-	private $user_id;
+	protected $user_id;
 	
 	/** @var string $order_date */
-	private $order_date;
+	protected $order_date;
 	
 	/** @var int $status_id */
-	private $status_id;
+	protected $status_id;
 	
 	/** @var int $shipping_id */
-	private $shipping_id;
+	protected $shipping_id;
+	
+	/** @var string $user_comment */
+	protected $user_comment;
 	
 	/** @var Shipping $shipping */
 	private $shipping;
-	
-	/** @var string $user_comment */
-	private $user_comment;
 	
 	protected static function parseOne( array $data ) : EntityBase
 	{

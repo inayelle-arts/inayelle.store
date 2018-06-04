@@ -12,6 +12,7 @@ abstract class ControllerBase
 	protected $title    = "Document title";
 	
 	protected $route;
+	/** @var ModelBase $model */
 	protected $model;
 	protected $args;
 	

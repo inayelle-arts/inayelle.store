@@ -8,7 +8,6 @@ use app\model\exception\AlreadyVerifiedException;
 use app\model\exception\BadVerificationCodeException;
 use app\model\exception\UserNotFoundException;
 use vendor\auxiliary\Email;
-use vendor\auxiliary\Logger;
 use vendor\auxiliary\SaltGenerator;
 use vendor\auxiliary\StringExt;
 use vendor\core\database\exception\DatabaseCommonException;
@@ -19,35 +18,35 @@ class Sign extends App
 	{
 	}
 	
-	public function validateSignIn( ?string $login, ?string $password ) : bool
+	public function validateSignIn( ?string $email, ?string $password ) : ?UserEntity
 	{
-		if( $login === null || $password == null )
-			return false;
+		if( $email === null || $password == null )
+			return null;
 		
 		/** @var UserEntity $user */
-		$user = UserEntity::getByField( "email", $login )[0];
+		$user = UserEntity::getByField( "email", $email )[0];
 		
-		if( $user === null )
-			return false;
+		if( $user === null || $user->email != $email || $user->password_hash != $password )
+			return null;
 		
-		return ( $user->email == $login && $user->password_hash == $password );
+		return $user;
 	}
 	
-	public function validateSignUp( ?string $login ) : bool
+	public function validateSignUp( ?string $email ) : bool
 	{
-		if( $login === null )
+		if( $email === null )
 			return false;
 		
 		/** @var UserEntity $user */
-		$user = UserEntity::getByUniqueField( "email", $login );
+		$user = UserEntity::getByUniqueField( "email", $email );
 		
 		return ( $user === null );
 	}
 	
-	public function registerUser( string $login, string $password ) : bool
+	public function registerUser( string $email, string $password ) : ?UserEntity
 	{
 		$user                = new UserEntity();
-		$user->email         = $login;
+		$user->email         = $email;
 		$user->password_hash = $password;
 		$user->verify_code   = SaltGenerator::generate();
 		
@@ -57,9 +56,9 @@ class Sign extends App
 		}
 		catch( DatabaseCommonException $exception )
 		{
-			Logger::log( "dce:", $exception );
-			return false;
+			return null;
 		}
+		
 		$message = "Hello! You received this message because you signed up on inayelle.store internet shop.\r\n";
 		$message .= "Click on reference below to confirm your email.\r\n";
 		$message .= "http://93.72.27.149:1338/sign/verified?code={$user->verify_code} \r\n";
@@ -68,7 +67,7 @@ class Sign extends App
 		
 		$mail = new Email( $user->email, "inayelle.store | Verification code", $message );
 		$mail->send();
-		return true;
+		return $user;
 	}
 	
 	/**

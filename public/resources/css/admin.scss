@@ -1,0 +1,46 @@
+@import "default";
+
+#footer
+{
+	position : absolute;
+	bottom   : 0;
+}
+
+#content
+{
+	select
+	{
+		width     : 50%;
+		font-size : 20px;
+	}
+	
+	option:focus, textarea:focus, select:focus
+	{
+		outline-offset     : 0 !important;
+		outline            : none !important;
+		box-shadow         : 0 0 3px $light-gray !important;
+		-moz-box-shadow    : 0 0 3px $light-gray !important;
+		-webkit-box-shadow : 0 0 3px $light-gray !important;
+	}
+	
+	input
+	{
+		outline-offset : 0 !important;
+		outline        : none !important;
+		&:focus
+		{
+			outline-offset : 0 !important;
+			outline        : none !important;
+		}
+	}
+}
+
+.hidden
+{
+	display : none;
+}
+
+.button
+{
+	font-size  : 16px;
+}

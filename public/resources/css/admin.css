@@ -271,7 +271,7 @@ ul {
   text-align: center;
   text-transform: uppercase;
 }
-.button, #content .special-card .special-card-button {
+.button {
   width: fit-content;
   padding: 5px;
   text-align: center;
@@ -284,10 +284,10 @@ ul {
   -o-transition: background-color 1s;
   transition: background-color 1s;
 }
-.button:hover, #content .special-card .special-card-button:hover {
+.button:hover {
   background: #dfdfdb;
 }
-.button:focus, #content .special-card .special-card-button:focus, .button:active, #content .special-card .special-card-button:active {
+.button:focus, .button:active {
   outline: none;
 }
 
@@ -332,14 +332,14 @@ ul {
   border-top-color: rgba(15, 16, 15, 0.05) !important;
 }
 
-.no-user-select, #content .special-parallax, #content .about, #content .arrivals-parallax, #header {
+.no-user-select, #header {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
 }
 
-.text-muted, #content .special-card .special-card-cost, #mobile-menu .mobile-helper {
+.text-muted, #mobile-menu .mobile-helper {
   color: rgba(62, 66, 70, 0.55);
 }
 
@@ -365,7 +365,7 @@ ul {
   color: black;
 }
 
-.card, #content .glasses, #content .t-shirt, #content .sweater, #content .shoes, .card-top-left, .card-left, #content .watch, .card-right, #content .tuxedo {
+.card, .card-top-left, .card-left, .card-right {
   min-width: 300px;
   min-height: 300px;
   display: flex;
@@ -376,16 +376,16 @@ ul {
   background-size: auto;
   text-shadow: 1px 1px 1px #020104;
 }
-.card .card-title, #content .glasses .card-title, #content .t-shirt .card-title, #content .sweater .card-title, #content .shoes .card-title, .card-top-left .card-title, .card-left .card-title, #content .watch .card-title, .card-right .card-title, #content .tuxedo .card-title, .card .card-subtitle, #content .glasses .card-subtitle, #content .t-shirt .card-subtitle, #content .sweater .card-subtitle, #content .shoes .card-subtitle, .card-top-left .card-subtitle, .card-left .card-subtitle, #content .watch .card-subtitle, .card-right .card-subtitle, #content .tuxedo .card-subtitle {
+.card .card-title, .card-top-left .card-title, .card-left .card-title, .card-right .card-title, .card .card-subtitle, .card-top-left .card-subtitle, .card-left .card-subtitle, .card-right .card-subtitle {
   color: #F7F7F6;
   width: fit-content;
   font-size: 30px;
   text-transform: uppercase;
 }
-.card .card-subtitle, #content .glasses .card-subtitle, #content .t-shirt .card-subtitle, #content .sweater .card-subtitle, #content .shoes .card-subtitle, .card-top-left .card-subtitle, .card-left .card-subtitle, #content .watch .card-subtitle, .card-right .card-subtitle, #content .tuxedo .card-subtitle {
+.card .card-subtitle, .card-top-left .card-subtitle, .card-left .card-subtitle, .card-right .card-subtitle {
   font-size: 14px;
 }
-.card .button, .card #content .special-card .special-card-button, #content .special-card .card .special-card-button, #content .glasses .button, #content .glasses .special-card .special-card-button, #content .special-card .glasses .special-card-button, #content .t-shirt .button, #content .t-shirt .special-card .special-card-button, #content .special-card .t-shirt .special-card-button, #content .sweater .button, #content .sweater .special-card .special-card-button, #content .special-card .sweater .special-card-button, #content .shoes .button, #content .shoes .special-card .special-card-button, #content .special-card .shoes .special-card-button, .card-top-left .button, .card-top-left #content .special-card .special-card-button, #content .special-card .card-top-left .special-card-button, .card-left .button, .card-left #content .special-card .special-card-button, #content .special-card .card-left .special-card-button, #content .watch .button, #content .watch .special-card .special-card-button, #content .special-card .watch .special-card-button, .card-right .button, .card-right #content .special-card .special-card-button, #content .special-card .card-right .special-card-button, #content .tuxedo .button, #content .tuxedo .special-card .special-card-button, #content .special-card .tuxedo .special-card-button {
+.card .button, .card-top-left .button, .card-left .button, .card-right .button {
   text-shadow: none;
   margin-top: 10px;
   padding: 15px 30px;
@@ -394,26 +394,26 @@ ul {
   border: 1px solid #F7F7F6;
   color: #F7F7F6;
 }
-.card .button:hover, .card #content .special-card .special-card-button:hover, #content .special-card .card .special-card-button:hover, #content .glasses .button:hover, #content .glasses .special-card .special-card-button:hover, #content .special-card .glasses .special-card-button:hover, #content .t-shirt .button:hover, #content .t-shirt .special-card .special-card-button:hover, #content .special-card .t-shirt .special-card-button:hover, #content .sweater .button:hover, #content .sweater .special-card .special-card-button:hover, #content .special-card .sweater .special-card-button:hover, #content .shoes .button:hover, #content .shoes .special-card .special-card-button:hover, #content .special-card .shoes .special-card-button:hover, .card-top-left .button:hover, .card-top-left #content .special-card .special-card-button:hover, #content .special-card .card-top-left .special-card-button:hover, .card-left .button:hover, .card-left #content .special-card .special-card-button:hover, #content .special-card .card-left .special-card-button:hover, #content .watch .button:hover, #content .watch .special-card .special-card-button:hover, #content .special-card .watch .special-card-button:hover, .card-right .button:hover, .card-right #content .special-card .special-card-button:hover, #content .special-card .card-right .special-card-button:hover, #content .tuxedo .button:hover, #content .tuxedo .special-card .special-card-button:hover, #content .special-card .tuxedo .special-card-button:hover {
+.card .button:hover, .card-top-left .button:hover, .card-left .button:hover, .card-right .button:hover {
   background-color: #F7F7F6;
   color: #020104;
 }
 
-.card-right .card-title, #content .tuxedo .card-title, .card-right .card-subtitle, #content .tuxedo .card-subtitle {
+.card-right .card-title, .card-right .card-subtitle {
   padding: 30px;
   align-self: flex-start;
 }
-.card-right .button, .card-right #content .special-card .special-card-button, #content .special-card .card-right .special-card-button, #content .tuxedo .button, #content .tuxedo .special-card .special-card-button, #content .special-card .tuxedo .special-card-button {
+.card-right .button {
   margin-bottom: 30px;
   margin-right: 30px;
   align-self: flex-end;
 }
 
-.card-left .card-title, #content .watch .card-title, .card-left .card-subtitle, #content .watch .card-subtitle {
+.card-left .card-title, .card-left .card-subtitle {
   padding: 30px;
   align-self: flex-end;
 }
-.card-left .button, .card-left #content .special-card .special-card-button, #content .special-card .card-left .special-card-button, #content .watch .button, #content .watch .special-card .special-card-button, #content .special-card .watch .special-card-button {
+.card-left .button {
   margin-bottom: 30px;
   margin-left: 30px;
   align-self: flex-start;
@@ -423,109 +423,43 @@ ul {
   padding: 30px;
   align-self: flex-end;
 }
-.card-top-left .button, .card-top-left #content .special-card .special-card-button, #content .special-card .card-top-left .special-card-button {
+.card-top-left .button {
   margin-bottom: 30px;
   margin-left: 30px;
   align-self: flex-start;
 }
 
-@media only screen and (min-width: 0) {
-  #content .row {
-    padding: 0;
-  }
-  #content [class^=col] {
-    padding: 0;
-  }
-}
-@media only screen and (min-width: 992px) {
-  #content .row {
-    padding: 15px 0;
-  }
-  #content [class^=col] {
-    padding: 0 15px;
-  }
-}
-#content .arrivals-parallax {
-  height: 400px;
-  background: url("/resources/img/index/arrivals.jpg") no-repeat fixed center center;
-  background-size: cover;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-}
-#content .about {
-  height: 400px;
-  background: url("/resources/img/index/about.jpg") no-repeat fixed center center;
-  background-size: cover;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-}
-#content .tuxedo {
-  background: url("/resources/img/index/tuxedo.png");
-}
-#content .shoes {
-  background: url("/resources/img/index/shoes.png") 50%;
-}
-#content .sweater {
-  background: url("/resources/img/index/sweater.jpg") 100% 100%;
-}
-#content .watch {
-  background: url("/resources/img/index/watch.png");
-}
-#content .t-shirt {
-  background: url("/resources/img/index/tshirt.png");
-  background-size: cover;
-}
-#content .glasses {
-  background: url("/resources/img/index/glasses.png") 100%;
-}
-#content .special-parallax {
-  height: 400px;
-  background: url("/resources/img/index/special.jpg") no-repeat fixed center center;
-  background-size: cover;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-position: center -50%;
-}
-#content .special-card {
-  border: 1px solid rgba(15, 16, 15, 0.05);
-  width: 100%;
-  padding-bottom: 5%;
-}
-#content .special-card .special-card-img img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-#content .special-card .special-card-title {
-  display: inline-block;
-  padding-left: 5%;
-  padding-top: 5%;
-  width: 70%;
-  text-align: left;
-  font-size: 20px;
-}
-#content .special-card .special-card-cost {
-  display: inline-block;
-  padding-top: 5%;
-  width: 25%;
-  text-align: right;
-  font-size: 20px;
-}
-#content .special-card .special-card-subtitle {
-  font-size: 16px;
-  display: inline-block;
-  width: 45%;
-  padding: 5%;
-}
-#content .special-card .special-card-button {
-  border: 1px solid rgba(15, 16, 15, 0.05);
-  font-size: 16px !important;
-  display: inline-block !important;
-  width: 50% !important;
-  padding: 5% !important;
+#footer {
+  position: absolute;
+  bottom: 0;
 }
 
-/*# sourceMappingURL=index.css.map */
+#content select {
+  width: 50%;
+  font-size: 20px;
+}
+#content option:focus, #content textarea:focus, #content select:focus {
+  outline-offset: 0 !important;
+  outline: none !important;
+  box-shadow: 0 0 3px #BEBAB4 !important;
+  -moz-box-shadow: 0 0 3px #BEBAB4 !important;
+  -webkit-box-shadow: 0 0 3px #BEBAB4 !important;
+}
+#content input {
+  outline-offset: 0 !important;
+  outline: none !important;
+}
+#content input:focus {
+  outline-offset: 0 !important;
+  outline: none !important;
+}
+
+.hidden {
+  display: none;
+}
+
+.button {
+  font-size: 16px;
+}
+
+/*# sourceMappingURL=admin.css.map */

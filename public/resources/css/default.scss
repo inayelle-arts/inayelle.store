@@ -18,7 +18,6 @@ html, body
 	background         : url("/resources/img/background.png") fixed;
 	color              : $light-black;
 	font-family        : "Spectral", serif;
-	//font-size          : 14px;
 }
 
 a
@@ -26,7 +25,7 @@ a
 	text-decoration : none;
 	&:hover, &:visited, &:link, &:active, &:focus
 	{
-		color           : initial !important;
+		color           : initial;
 		text-decoration : none !important;
 	}
 	&:hover
@@ -169,6 +168,14 @@ ul
 				width      : initial !important;
 			}
 		}
+		
+		a
+		{
+			&:link
+			{
+				color : $muted !important;
+			}
+		}
 	}
 	
 	.socials
@@ -198,13 +205,13 @@ ul
 
 #mobile-menu
 {
-	font-size : 20px;
-	color     : $light-black;
-	display   : none;
-	width     : 100%;
-	z-index   : 9999;
-	height    : 100vh;
-	background: url("/resources/img/background.png") fixed;
+	font-size  : 20px;
+	color      : $light-black;
+	display    : none;
+	width      : 100%;
+	z-index    : 9999;
+	height     : 100vh;
+	background : url("/resources/img/background.png") fixed;
 	
 	h3, h4
 	{
@@ -335,12 +342,14 @@ ul
 
 .text-button-muted
 {
-	@extend .text-button;
 	color          : $muted !important;
 	text-transform : none !important;
 	&:hover
 	{
-		color : $black !important;
+		a:link
+		{
+			color : $black !important;
+		}
 	}
 	@include transition(color, 0.7s);
 }

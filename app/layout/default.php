@@ -2,6 +2,9 @@
 
 $refresh = rand();
 
+/** @var \app\model\entity\UserEntity $__user__ */
+$__user__ = $__user__ ?? null;
+
 ?>
 
 <html lang="en">
@@ -75,7 +78,7 @@ $refresh = rand();
 							<li class="d-none d-md-inline-block">
 								<a href="#" class="text-button">
 								<span>
-									<?= $__userLogin__ ?>
+									<?= $__user__->email ?>
 								</span>
 								</a>
 							</li>
@@ -189,19 +192,24 @@ $refresh = rand();
 				<div class="col-12 col-md helpings">
 					<ul>
 						<li>
-							<div class="text-button-muted">
+							<a class="text-button-muted" href="#">
 								shipping & returns
-							</div>
+							</a>
 						</li>
 						<li>
-							<div class="text-button-muted">
+							<a class="text-button-muted" href="#">
 								size guide
-							</div>
+							</a>
 						</li>
 						<li>
-							<div class="text-button-muted">
+							<a class="text-button-muted" href="#">
 								about
-							</div>
+							</a>
+						</li>
+						<li>
+							<a class="text-button-muted" href="/admin">
+								administrator menu
+							</a>
 						</li>
 						<li>
 							<div class="text-muted">

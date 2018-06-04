@@ -7,4 +7,7 @@ require_once ROOT__ . "/vendor/core/Application.php";
 Application::initialize();
 Application::start();
 
-//echo \vendor\auxiliary\SaltGenerator::generate(10);
+/** @var \app\model\entity\ProductEntity $product */
+//$product = \app\model\entity\ProductEntity::getById(1);
+
+//echo $product->toJSON();
