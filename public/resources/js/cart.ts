@@ -2,6 +2,7 @@ class Product
 {
 	public brand_id: number;
 	public color: string;
+	public total_cost: number;
 	public cost: number;
 	public description: string;
 	public discount: number;
@@ -22,43 +23,23 @@ class Product
 	
 	public createDOM(): void
 	{
-		this.dom = $( document.createElement( "div" ) );
-		this.dom.addClass( "col-12 col-md-6 col-lg-4" );
+		this.dom = $( document.createElement( "a" ) );
+		this.dom.attr( "href", `/product/see?id=${this.id}` );
+		this.dom.attr( "target", "_blank" );
+		this.dom.addClass( "cart-item" );
+		this.dom.attr( "data-cart-item-id", "" + this.id );
 		
 		let html =
-			"<div class=\"product\">" +
-			"" +
-			`<img class=\"image\" src=\"/resources/img/product_repo${this.primaryImage}\">` +
-			"" +
-			"<div class=\"row\">" +
-			"<div class=\"col-12 col-lg-6\">" +
-			"<div class=\"name\">" +
+			`<div class=\"cart-item-img\">` +
+			`<img src=\"/resources/img/product_repo/${this.primaryImage}\" alt=\"alt\">` +
+			"</div>" +
+			"<div class=\"cart-item-title\">" +
 			`${this.name}` +
 			"</div>" +
+			"<div class=\"cart-item-cost\">" +
+			`${this.total_cost / 100.0}$` +
 			"</div>" +
-			"" +
-			"<div class=\"col-12 col-lg-6\">" +
-			"<div class=\"cost\">" +
-			`${this.cost / 100}$` +
-			"</div>" +
-			"</div>" +
-			"</div>" +
-			"" +
-			"<div class=\"row align-items-center\">" +
-			"<div class=\"col-12 col-lg-7\">" +
-			"<div class=\"description\">" +
-			`${this.description}` +
-			"</div>" +
-			"</div>" +
-			"" +
-			"<div class=\"col-12 col-lg-5\">" +
-			`<a class=\"checkout\" href=\"/product/see?id=${this.id}\">` +
-			"checkout" +
-			"</a>" +
-			"</div>" +
-			"</div>" +
-			"" +
-			"</div>";
+			`<div onclick='remove(${this.id})' style="cursor: pointer;">X</div>`;
 		
 		this.dom.html( html );
 	}
@@ -72,6 +53,8 @@ class Product
 class Cart
 {
 	private dom: JQuery<HTMLElement>;
+	private counterDOM: JQuery<HTMLElement>;
+	private containerDOM: JQuery<HTMLElement>;
 	
 	private idCount: number;
 	private ids: Array<number>;
@@ -79,13 +62,17 @@ class Cart
 	private openCartDOM: JQuery<HTMLElement>;
 	private submitCartDOM: JQuery<HTMLElement>;
 	
-	//	private isCached: boolean = false;
+	private isCached: boolean = false;
 	private isClosed: boolean = true;
+	
+	private static increment: number = 0;
 	
 	constructor()
 	{
 		this.dom = $( "#cart" );
 		this.openCartDOM = $( "#open-cart-button" );
+		this.counterDOM = $( "#cart-emptyness" );
+		this.containerDOM = $( "#cart-item-holder" );
 		
 		let storageString = localStorage.getItem( "CART-ID-ARRAY" );
 		if( storageString === null )
@@ -100,10 +87,20 @@ class Cart
 		
 		this.idCount = this.ids.length;
 		
+		if( this.idCount !== 0 )
+			this.counterDOM.text( `${this.idCount} items` );
+		
 		this.openCartDOM.on( "click", () =>
 		{
 			this.isClosed = !this.isClosed;
-			
+			this.load();
+		} );
+	}
+	
+	public load()
+	{
+		if( this.ids.length !== 0 && !this.isCached )
+		{
 			let data = JSON.stringify( this.ids );
 			console.log( data );
 			
@@ -120,7 +117,7 @@ class Cart
 							return;
 						}
 						
-						console.log(response);
+						console.log( response );
 						let data: Array<[string]> = JSON.parse( response );
 						let products: Array<Product> = new Array<Product>( 0 );
 						
@@ -132,28 +129,49 @@ class Cart
 						
 						products.forEach( ( product: Product ) =>
 						                  {
-							                  console.log(product);
-//							                  product.createDOM();
-							                  //this.container.append( product.getDOM() );
+							                  console.log( product );
+							                  product.createDOM();
+							                  this.containerDOM.append( product.getDOM() );
 						                  } );
+						this.isCached = true;
 					}
 				}
 			);
-		} );
+		}
 	}
 	
 	public put( id: number )
 	{
+		this.isCached = false;
+		if( this.ids.indexOf( id ) !== -1 )
+			return;
 		this.ids.push( id );
 		let storageString = JSON.stringify( this.ids );
 		localStorage.setItem( "CART-ID-ARRAY", storageString );
-		console.log( storageString );
+		this.load();
 	}
 	
 	public remove( id: number )
 	{
-		delete this.ids[this.ids.indexOf( id )];
+		$( `div[data-cart-item-id="${id}"]` ).remove();
+		
+		let filter = new Array<number>( 0 );
+		let found: boolean = false;
+		
+		this.ids.forEach( ( value: number ) =>
+		                  {
+			                  if( !found && value !== id )
+			                  {
+				                  filter.push( value );
+				                  found = true;
+			                  }
+			                  else if( found )
+				                  filter.push( value );
+		                  } );
+		
+		this.ids = filter;
 		let storageString = JSON.stringify( this.ids );
+		this.counterDOM.text( this.ids.length + " items" );
 		localStorage.setItem( "CART-ID-ARRAY", storageString );
 	}
 }
@@ -166,3 +184,8 @@ $( () =>
 	   globalCart = new Cart();
 	   console.log( "CART CREATED" );
    } );
+
+function remove( id: number )
+{
+	globalCart.remove( id );
+}

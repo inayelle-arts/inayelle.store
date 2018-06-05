@@ -14,10 +14,21 @@ var See;
             if (index === 0)
                 jImage.trigger("click");
         });
-        $("#add-to-card-button").on("click", function () {
+        var addButton = $("#add-to-card-button");
+        addButton.on("click", function () {
             var id = +$("#primary-image").attr("data-id");
             globalCart.put(id);
-            console.log("added");
+            addButton.fadeOut("0.7s", function () {
+                addButton.text("added");
+                addButton.fadeIn("0.7s", function () {
+                    setTimeout(function () {
+                        addButton.fadeOut("0.7s", function () {
+                            addButton.text("add to cart");
+                            addButton.fadeIn("0.7s");
+                        });
+                    }, 1500);
+                });
+            });
         });
     });
 })(See || (See = {}));

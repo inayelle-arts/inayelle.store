@@ -22,12 +22,29 @@ namespace See
 				                             jImage.trigger( "click" );
 		                             } );
 		
-		
-		   $( "#add-to-card-button" ).on( "click", () =>
+		let addButton = $("#add-to-card-button");
+		   
+		   addButton.on( "click", () =>
 		   {
 			   let id: number = +$( "#primary-image" ).attr( "data-id" );
 			   globalCart.put( id );
-			   console.log( "added" );
+			   
+			   addButton.fadeOut("0.7s", () =>
+			   {
+			   	addButton.text("added");
+			   	addButton.fadeIn("0.7s", () =>
+			    {
+			    	setTimeout(() =>
+				               {
+				               	addButton.fadeOut("0.7s", () =>
+				                {
+				                	addButton.text("add to cart");
+				                	addButton.fadeIn("0.7s");
+				                });
+					               
+				               }, 1500);
+			    })
+			   });
 		   } );
 	   } );
 }

@@ -29,20 +29,10 @@ $__user__ = $__user__ ?? null;
 	<h3 class="title">shopping bag</h3>
 	<hr>
 	<div class="text-muted" id="cart-emptyness">empty now</div>
+	<div style="button" id="purchase-button">purchase</div>
 	<div id="cart-item-holder">
 	
-		<div class="cart-item">
-			<div class="cart-item-img">
-				<img src="/resources/img/product_repo/default_product.jpg" alt="d">
-			</div>
-			<div class="cart-item-title">
-				title
-			</div>
-			<div class="cart-item-cost">
-				cost
-			</div>
-		</div>
-		
+	
 	</div>
 </div>
 

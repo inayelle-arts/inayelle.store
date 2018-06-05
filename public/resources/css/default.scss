@@ -509,11 +509,14 @@ ul
 
 .cart-item
 {
-	border-bottom : 1px solid $border;
+	border-bottom  : 1px solid $border;
+	display        : flex;
+	flex-direction : row;
+	align-items    : center;
 	
 	.cart-item-img
 	{
-		width   : 50%;
+		width   : 40%;
 		img
 		{
 			width : 100%;
@@ -523,9 +526,19 @@ ul
 	
 	.cart-item-title, .cart-item-cost
 	{
-		width     : 100%;
-		display   : block;
-		font-size : 15px;
+		text-align : center;
+		width      : 100%;
+		display    : inline-block;
+		font-size  : 15px;
+	}
+	
+	@include media-xs
+	{
+		padding : 0;
+	}
+	@include media-md
+	{
+		padding : 15px;
 	}
 }
 
