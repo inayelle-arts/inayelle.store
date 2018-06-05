@@ -429,36 +429,57 @@ ul {
   align-self: flex-start;
 }
 
-#footer {
-  display: none !important;
+@media only screen and (min-width: 0) {
+  h1 {
+    width: 100%;
+    text-align: center;
+  }
+
+  [class^=col] {
+    padding: 0;
+  }
+
+  #footer {
+    position: relative;
+    bottom: initial;
+  }
+}
+@media only screen and (min-width: 768px) {
+  h1 {
+    width: fit-content;
+    text-align: left;
+  }
+
+  [class^=col] {
+    padding: 15px;
+  }
+
+  #footer {
+    position: absolute;
+    bottom: 0;
+  }
+}
+.small-img {
+  display: inline-block;
+  margin-right: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.small-img img {
+  max-height: 100px !important;
 }
 
-#content select {
-  width: 50%;
-  font-size: 20px;
-}
-#content option:focus, #content textarea:focus, #content select:focus {
-  outline-offset: 0 !important;
-  outline: none !important;
-  box-shadow: 0 0 3px #BEBAB4 !important;
-  -moz-box-shadow: 0 0 3px #BEBAB4 !important;
-  -webkit-box-shadow: 0 0 3px #BEBAB4 !important;
-}
-#content input {
-  outline-offset: 0 !important;
-  outline: none !important;
-}
-#content input:focus {
-  outline-offset: 0 !important;
-  outline: none !important;
+#content {
+  font-size: 15px;
 }
 
-.hidden {
-  display: none !important;
+#primary-image {
+  display: block;
+  width: 100%;
 }
 
-.button {
-  font-size: 16px;
+.bordered-image {
+  border: 1px solid #46413B;
 }
 
-/*# sourceMappingURL=admin.css.map */
+/*# sourceMappingURL=see.css.map */

@@ -8,9 +8,13 @@ namespace Admin
 		private tableHeadDOM: JQuery<HTMLElement>;
 		private tableBodyDOM: JQuery<HTMLElement>;
 		
+		private fieldList: Array<string>;
+		
 		private rowList: Array<Row>;
 		
 		private saveChangesButtonDOM: JQuery<HTMLElement>;
+		
+		private addRowButtonDOM: JQuery<HTMLElement>;
 		
 		constructor()
 		{
@@ -21,6 +25,7 @@ namespace Admin
 			this.tableBodyDOM = $( "#table-body" );
 			
 			this.saveChangesButtonDOM = $( "#save-changes-button" );
+			this.addRowButtonDOM = $( "#add-row-button" );
 			
 			this.rowList = new Array<Row>( 0 );
 			
@@ -38,29 +43,59 @@ namespace Admin
 			
 			this.saveChangesButtonDOM.on( "click", () =>
 			{
+				let success: boolean = true;
+				let updated: boolean = false;
+				
 				this.rowList.forEach( ( value: Row ) =>
 				                      {
-					                      if( value.pendingUpdate )
-					                      {
-						                      let json = value.toJSON();
-						
-						                      console.log( json );
-						
-						                      let data = json;
-						
-						                      $.ajax(
+					                      let url = "/admin/";
+					
+					                      if( value.pendingDelete === true )
+						                      url += "delete";
+					                      else if( value.pendingCreate === true )
+						                      url += "create";
+					                      else if( value.pendingUpdate === true )
+						                      url += "update";
+					                      else
+						                      return;
+					
+					                      updated = true;
+					
+					                      let data = value.toJSON();
+					
+					                      $.ajax(
+						                      {
+							                      url: url,
+							                      method: "POST",
+							                      data: {data},
+							                      success: ( response: string ) =>
 							                      {
-								                      url: "/admin/update",
-								                      method: "POST",
-								                      data: {data},
-								                      success: ( response: string ) =>
+								                      if( response !== "success" )
 								                      {
-									                      console.log( response );
+									                      alert( response );
+									                      success = false;
 								                      }
 							                      }
-						                      );
-					                      }
+						                      }
+					                      );
 				                      } );
+				
+				if( updated && success )
+					this.loadTable();
+			} );
+			
+			
+			this.addRowButtonDOM.on( "click", () =>
+			{
+				let row = new Row( -1, <string>this.tableSelectDOM.val(), true );
+				this.rowList.push( row );
+				
+				row.addPrimaryField( "generated", "id" );
+				
+				for( let i = 1; i < this.fieldList.length; i++ )
+					row.addField( null, this.fieldList[i] );
+				
+				this.tableBodyDOM.append( row.getDOM() );
 			} );
 		}
 		
@@ -100,6 +135,7 @@ namespace Admin
 		
 		protected parseFieldList( fields: Array<string> )
 		{
+			this.fieldList = fields;
 			fields.forEach( ( value: string ) =>
 			                {
 				                let columnNameDOM = $( document.createElement( "th" ) );
@@ -141,6 +177,8 @@ namespace Admin
 		protected needsCreate: boolean = false;
 		protected needsRemove: boolean = false;
 		
+		protected deleteButtonDOM: JQuery<HTMLElement>;
+		
 		private static ON_HOVER_STYLE: string = "bg-primary";
 		private static ON_HOVER_TEXT_STYLE: string = "text-light";
 		
@@ -157,6 +195,12 @@ namespace Admin
 			this.id = id;
 			this.active = false;
 			this.fieldList = new Array<Field>( 0 );
+			
+			this.deleteButtonDOM = $( document.createElement( "div" ) );
+			
+			this.deleteButtonDOM.addClass( "hidden btn btn-danger" );
+			
+			this.deleteButtonDOM.text( "delete" );
 			
 			this.setEventHandlers();
 		}
@@ -177,8 +221,36 @@ namespace Admin
 			
 			this.dom.on( "click", () =>
 			{
-				if( !this.needsCreate )
+				if( !( this.needsCreate || this.needsRemove ) )
 					this.needsUpdate = true;
+			} );
+			
+			this.deleteButtonDOM.on( "click", () =>
+			{
+				this.needsRemove = !this.needsRemove;
+				
+				if( this.needsCreate )
+				{
+					this.needsUpdate = false;
+					this.needsCreate = false;
+					this.needsRemove = false;
+					this.dom.remove();
+					return;
+				}
+				
+				if( this.needsUpdate )
+					this.needsUpdate = false;
+				
+				if( this.needsRemove )
+				{
+					this.dom.addClass( "bg-danger" );
+					this.deleteButtonDOM.text( "keep" );
+				}
+				else
+				{
+					this.dom.removeClass( "bg-danger" );
+					this.deleteButtonDOM.text( "delete" );
+				}
 			} );
 		}
 		
@@ -197,9 +269,28 @@ namespace Admin
 			return this.needsRemove;
 		}
 		
-		public addPrimaryField( value: number, fieldName: string )
+		public addPrimaryField( value: any, fieldName: string )
 		{
 			let field = new Field( value, fieldName, true );
+			
+			let fieldDOM = field.getDOM();
+			
+			fieldDOM.append( this.deleteButtonDOM );
+			
+			fieldDOM.on( "mouseenter", () =>
+			{
+				field.getValueDOM().addClass( "hidden" );
+				
+				this.deleteButtonDOM.removeClass( "hidden" );
+			} );
+			
+			fieldDOM.on( "mouseleave", () =>
+			{
+				this.deleteButtonDOM.addClass( "hidden" );
+				
+				field.getValueDOM().removeClass( "hidden" );
+			} );
+			
 			this.fieldList.push( field );
 			this.dom.append( field.getDOM() );
 		}
@@ -240,7 +331,11 @@ namespace Admin
 		protected valueDOM: JQuery<HTMLElement>;
 		protected inputDOM: JQuery<HTMLElement>;
 		
+		protected value: any;
+		
 		protected isPrimary: boolean;
+		
+		protected isActive: boolean = false;
 		
 		protected readonly columnName: string;
 		
@@ -248,6 +343,8 @@ namespace Admin
 		{
 			this.columnName = fieldName;
 			this.isPrimary = primary;
+			
+			this.value = value;
 			
 			let tagName: string = primary ? "th" : "td";
 			
@@ -283,6 +380,7 @@ namespace Admin
 		{
 			this.dom.on( "click", () =>
 			{
+				this.value = this.valueDOM.text();
 				this.inputDOM.width( this.valueDOM.width() );
 				this.inputDOM.val( this.valueDOM.text() );
 				this.valueDOM.addClass( "hidden" );
@@ -291,11 +389,15 @@ namespace Admin
 				this.inputDOM.trigger( "select" );
 			} );
 			
-			this.inputDOM.on( "mouseleave", () =>
+			this.inputDOM.on( "focusout", () =>
 			{
-				this.dom.addClass( "bg-danger" );
-				this.dom.addClass( "text-light" );
-				this.valueDOM.text( <string>this.inputDOM.val() );
+				if( this.value !== this.inputDOM.val() )
+				{
+					this.value = this.inputDOM.val();
+					this.dom.addClass( "bg-success" );
+					this.dom.addClass( "text-light" );
+					this.valueDOM.text( <string>this.inputDOM.val() );
+				}
 				this.inputDOM.addClass( "hidden" );
 				this.valueDOM.removeClass( "hidden" );
 			} );
@@ -304,9 +406,13 @@ namespace Admin
 			{
 				if( keycode.keyCode === 13 )
 				{
-					this.dom.addClass( "bg-danger" );
-					this.dom.addClass( "text-light" );
-					this.valueDOM.text( <string>this.inputDOM.val() );
+					if( this.value !== this.inputDOM.val() )
+					{
+						this.value = this.inputDOM.val();
+						this.dom.addClass( "bg-success" );
+						this.dom.addClass( "text-light" );
+						this.valueDOM.text( <string>this.inputDOM.val() );
+					}
 					this.inputDOM.addClass( "hidden" );
 					this.valueDOM.removeClass( "hidden" );
 				}
@@ -328,6 +434,16 @@ namespace Admin
 		{
 			return this.dom;
 		}
+		
+		public getValueDOM(): JQuery<HTMLElement>
+		{
+			return this.valueDOM;
+		}
+		
+		public getValue(): any
+		{
+			return this.value;
+		}
 	}
 	
 	
@@ -337,6 +453,5 @@ namespace Admin
 	   {
 		   admin = new Admin();
 		   admin.loadTable();
-		
 	   } );
 }

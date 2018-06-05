@@ -14,10 +14,12 @@ $refresh = rand();
 		<select name="table" id="table-select">
 			<option value="ProductEntity">products</option>
 			<option value="OrderEntity">orders</option>
+			<option value="UserEntity">users</option>
 			<option value="BrandEntity">brands</option>
 			<option value="ImageEntity">images_storage</option>
 		</select>
 		<div class="button" id="save-changes-button">Save changes</div>
+		<div class="button" id="add-row-button">Add row</div>
 	</form>
 
 	<table class="table table-striped table-bordered" id="table">

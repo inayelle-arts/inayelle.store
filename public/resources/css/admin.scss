@@ -2,8 +2,7 @@
 
 #footer
 {
-	position : absolute;
-	bottom   : 0;
+	display : none !important;
 }
 
 #content
@@ -37,10 +36,10 @@
 
 .hidden
 {
-	display : none;
+	display : none !important;
 }
 
 .button
 {
-	font-size  : 16px;
+	font-size : 16px;
 }

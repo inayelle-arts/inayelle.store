@@ -1,3 +1,9 @@
+<?php
+
+/** @var \app\model\entity\ProductEntity[] $discounted */
+$discounted = $discounted ?? [];
+?>
+
 <link rel="stylesheet" href="/resources/css/index.css?v=<?= $refresh ?>" type="text/css">
 
 <div class="arrivals-parallax card">
@@ -107,94 +113,34 @@
 </div>
 
 <div class="container">
-	<div class="row">
-		<div class="col-12 col-md-6 col-lg-3">
-			<div class="special-card">
-				<div class="special-card-img">
-					<img src="/resources/img/index/special-glasses.png" alt="glasses">
-				</div>
+	<div class="row justify-content-center">
+		
+		<? foreach( $discounted as $item ): ?>
+			<? if( $item->discount === 0 ): ?>
+				<? continue; ?>
+			<? endif; ?>
+			<div class="col-12 col-md-6 col-lg-3">
+				<div class="special-card">
+					<div class="special-card-img">
+						<img src="/resources/img/product_repo<?= $item->getPrimaryImagePath() ?>" alt="discounted-image">
+					</div>
 
-				<div class="special-card-title">
-					Amber Eye
-				</div>
+					<div class="special-card-title">
+						<?= $item->name ?>
+					</div>
 
-				<div class="special-card-cost">
-					9.99$
-				</div>
-				<div class="special-card-subtitle">
-					Glasses
-				</div>
+					<div class="special-card-cost">
+						<?= $item->cost / 100 ?>$
+					</div>
+					<div class="special-card-subtitle">
+						<?= $item->discount ?>%
+					</div>
 
-				<div class="special-card-button">
-					checkout
+					<a class="special-card-button" href="/product/see?id=<?= $item->id ?>">
+						checkout
+					</a>
 				</div>
 			</div>
-		</div>
-		<div class="col-12 col-md-6 col-lg-3">
-			<div class="special-card">
-				<div class="special-card-img">
-					<img src="/resources/img/index/special-sweater.png" alt="sweater">
-				</div>
-
-				<div class="special-card-title">
-					Cold embrase
-				</div>
-
-				<div class="special-card-cost">
-					28.49$
-				</div>
-				<div class="special-card-subtitle">
-					Sweater
-				</div>
-
-				<div class="special-card-button">
-					checkout
-				</div>
-			</div>
-		</div>
-		<div class="col-12 col-md-6 col-lg-3">
-			<div class="special-card">
-				<div class="special-card-img">
-					<img src="/resources/img/index/special-tshirt.png" alt="tshirt">
-				</div>
-
-				<div class="special-card-title">
-					Iron Man
-				</div>
-
-				<div class="special-card-cost">
-					17.49$
-				</div>
-				<div class="special-card-subtitle">
-					T-shirt
-				</div>
-
-				<div class="special-card-button">
-					checkout
-				</div>
-			</div>
-		</div>
-		<div class="col-12 col-md-6 col-lg-3">
-			<div class="special-card">
-				<div class="special-card-img">
-					<img src="/resources/img/index/special-lower.png" alt="underwear">
-				</div>
-
-				<div class="special-card-title">
-					Lacey Lace
-				</div>
-
-				<div class="special-card-cost">
-					38.00$
-				</div>
-				<div class="special-card-subtitle">
-					Underwear
-				</div>
-
-				<div class="special-card-button">
-					checkout
-				</div>
-			</div>
-		</div>
+		<? endforeach; ?>
 	</div>
 </div>

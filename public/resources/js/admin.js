@@ -7,6 +7,7 @@ var Admin;
             this.tableHeadDOM = $("#table-head");
             this.tableBodyDOM = $("#table-body");
             this.saveChangesButtonDOM = $("#save-changes-button");
+            this.addRowButtonDOM = $("#add-row-button");
             this.rowList = new Array(0);
             this.setEventHandlers();
         }
@@ -17,21 +18,42 @@ var Admin;
                 _this.loadTable();
             });
             this.saveChangesButtonDOM.on("click", function () {
+                var success = true;
+                var updated = false;
                 _this.rowList.forEach(function (value) {
-                    if (value.pendingUpdate) {
-                        var json = value.toJSON();
-                        console.log(json);
-                        var data = json;
-                        $.ajax({
-                            url: "/admin/update",
-                            method: "POST",
-                            data: { data: data },
-                            success: function (response) {
-                                console.log(response);
+                    var url = "/admin/";
+                    if (value.pendingDelete === true)
+                        url += "delete";
+                    else if (value.pendingCreate === true)
+                        url += "create";
+                    else if (value.pendingUpdate === true)
+                        url += "update";
+                    else
+                        return;
+                    updated = true;
+                    var data = value.toJSON();
+                    $.ajax({
+                        url: url,
+                        method: "POST",
+                        data: { data: data },
+                        success: function (response) {
+                            if (response !== "success") {
+                                alert(response);
+                                success = false;
                             }
-                        });
-                    }
+                        }
+                    });
                 });
+                if (updated && success)
+                    _this.loadTable();
+            });
+            this.addRowButtonDOM.on("click", function () {
+                var row = new Row(-1, _this.tableSelectDOM.val(), true);
+                _this.rowList.push(row);
+                row.addPrimaryField("generated", "id");
+                for (var i = 1; i < _this.fieldList.length; i++)
+                    row.addField(null, _this.fieldList[i]);
+                _this.tableBodyDOM.append(row.getDOM());
             });
         };
         Admin.prototype.loadTable = function () {
@@ -60,6 +82,7 @@ var Admin;
         };
         Admin.prototype.parseFieldList = function (fields) {
             var _this = this;
+            this.fieldList = fields;
             fields.forEach(function (value) {
                 var columnNameDOM = $(document.createElement("th"));
                 columnNameDOM.attr("scope", "col");
@@ -94,6 +117,9 @@ var Admin;
             this.id = id;
             this.active = false;
             this.fieldList = new Array(0);
+            this.deleteButtonDOM = $(document.createElement("div"));
+            this.deleteButtonDOM.addClass("hidden btn btn-danger");
+            this.deleteButtonDOM.text("delete");
             this.setEventHandlers();
         }
         Row.prototype.setEventHandlers = function () {
@@ -107,8 +133,28 @@ var Admin;
                 _this.dom.removeClass(Row.ON_HOVER_TEXT_STYLE);
             });
             this.dom.on("click", function () {
-                if (!_this.needsCreate)
+                if (!(_this.needsCreate || _this.needsRemove))
                     _this.needsUpdate = true;
+            });
+            this.deleteButtonDOM.on("click", function () {
+                _this.needsRemove = !_this.needsRemove;
+                if (_this.needsCreate) {
+                    _this.needsUpdate = false;
+                    _this.needsCreate = false;
+                    _this.needsRemove = false;
+                    _this.dom.remove();
+                    return;
+                }
+                if (_this.needsUpdate)
+                    _this.needsUpdate = false;
+                if (_this.needsRemove) {
+                    _this.dom.addClass("bg-danger");
+                    _this.deleteButtonDOM.text("keep");
+                }
+                else {
+                    _this.dom.removeClass("bg-danger");
+                    _this.deleteButtonDOM.text("delete");
+                }
             });
         };
         Object.defineProperty(Row.prototype, "pendingUpdate", {
@@ -133,7 +179,18 @@ var Admin;
             configurable: true
         });
         Row.prototype.addPrimaryField = function (value, fieldName) {
+            var _this = this;
             var field = new Field(value, fieldName, true);
+            var fieldDOM = field.getDOM();
+            fieldDOM.append(this.deleteButtonDOM);
+            fieldDOM.on("mouseenter", function () {
+                field.getValueDOM().addClass("hidden");
+                _this.deleteButtonDOM.removeClass("hidden");
+            });
+            fieldDOM.on("mouseleave", function () {
+                _this.deleteButtonDOM.addClass("hidden");
+                field.getValueDOM().removeClass("hidden");
+            });
             this.fieldList.push(field);
             this.dom.append(field.getDOM());
         };
@@ -162,8 +219,10 @@ var Admin;
     var Field = /** @class */ (function () {
         function Field(value, fieldName, primary) {
             if (primary === void 0) { primary = false; }
+            this.isActive = false;
             this.columnName = fieldName;
             this.isPrimary = primary;
+            this.value = value;
             var tagName = primary ? "th" : "td";
             this.dom = $(document.createElement(tagName));
             this.valueDOM = $(document.createElement("div"));
@@ -185,6 +244,7 @@ var Admin;
         Field.prototype.setEventHandlers = function () {
             var _this = this;
             this.dom.on("click", function () {
+                _this.value = _this.valueDOM.text();
                 _this.inputDOM.width(_this.valueDOM.width());
                 _this.inputDOM.val(_this.valueDOM.text());
                 _this.valueDOM.addClass("hidden");
@@ -192,18 +252,24 @@ var Admin;
                 _this.inputDOM.trigger("focus");
                 _this.inputDOM.trigger("select");
             });
-            this.inputDOM.on("mouseleave", function () {
-                _this.dom.addClass("bg-danger");
-                _this.dom.addClass("text-light");
-                _this.valueDOM.text(_this.inputDOM.val());
+            this.inputDOM.on("focusout", function () {
+                if (_this.value !== _this.inputDOM.val()) {
+                    _this.value = _this.inputDOM.val();
+                    _this.dom.addClass("bg-success");
+                    _this.dom.addClass("text-light");
+                    _this.valueDOM.text(_this.inputDOM.val());
+                }
                 _this.inputDOM.addClass("hidden");
                 _this.valueDOM.removeClass("hidden");
             });
             this.inputDOM.on("keypress", function (keycode) {
                 if (keycode.keyCode === 13) {
-                    _this.dom.addClass("bg-danger");
-                    _this.dom.addClass("text-light");
-                    _this.valueDOM.text(_this.inputDOM.val());
+                    if (_this.value !== _this.inputDOM.val()) {
+                        _this.value = _this.inputDOM.val();
+                        _this.dom.addClass("bg-success");
+                        _this.dom.addClass("text-light");
+                        _this.valueDOM.text(_this.inputDOM.val());
+                    }
                     _this.inputDOM.addClass("hidden");
                     _this.valueDOM.removeClass("hidden");
                 }
@@ -217,6 +283,12 @@ var Admin;
         };
         Field.prototype.getDOM = function () {
             return this.dom;
+        };
+        Field.prototype.getValueDOM = function () {
+            return this.valueDOM;
+        };
+        Field.prototype.getValue = function () {
+            return this.value;
         };
         return Field;
     }());

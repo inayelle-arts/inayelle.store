@@ -12,40 +12,55 @@ class WhereQuery extends QueryBase
 		parent::__construct( $query );
 	}
 	
-	public function __invoke( string $field, string $operator, $value ) : self
+	public function __invoke( string $field, string $operator, $value, bool $openBrace = false ) : self
 	{
-		$paramKey        = ":where" . self::$paramCount;
+		$paramKey              = ":where" . self::$paramCount;
 		$this->args[$paramKey] = $value;
 		self::$paramCount++;
 		
-		$this->statement .= "WHERE {$field} {$operator} {$paramKey} ";
+		$brace = "";
+		
+		if( $openBrace )
+			$brace = "( ";
+		
+		$this->statement .= "WHERE {$brace} {$field} {$operator} {$paramKey} ";
 		
 		return $this;
 	}
 	
-	public function orderby(string $field, string ... $fields) : OrderByQuery
+	public function orderby( string $field, string ... $fields ) : OrderByQuery
 	{
-		return (new OrderByQuery($this))($field, ... $fields);
+		return ( new OrderByQuery( $this ) )( $field, ... $fields );
 	}
 	
-	public function and(string $field, string $operator, $value) : self
+	public function and( string $field, string $operator, $value, bool $closeBrace = false ) : self
 	{
-		$paramKey        = ":andplaceholder" . self::$paramCount;
+		$paramKey              = ":andplaceholder" . self::$paramCount;
 		$this->args[$paramKey] = $value;
 		self::$paramCount++;
 		
-		$this->statement .= "AND {$field} {$operator} {$paramKey} ";
+		$brace = "";
+		
+		if( $closeBrace )
+			$brace = ") ";
+		
+		$this->statement .= "AND {$field} {$operator} {$paramKey} {$brace} ";
 		
 		return $this;
 	}
 	
-	public function or(string $field, string $operator, $value) : self
+	public function or( string $field, string $operator, $value, bool $closeBrace = false ) : self
 	{
-		$paramKey        = ":orplaceholder" . self::$paramCount;
+		$paramKey              = ":orplaceholder" . self::$paramCount;
 		$this->args[$paramKey] = $value;
 		self::$paramCount++;
 		
-		$this->statement .= "OR {$field} {$operator} {$paramKey} ";
+		$brace = "";
+		
+		if( $closeBrace )
+			$brace = ") ";
+		
+		$this->statement .= "OR {$field} {$operator} {$paramKey} {$brace} ";
 		
 		return $this;
 	}

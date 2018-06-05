@@ -15,9 +15,9 @@ class FromQuery extends QueryBase
 		return $this;
 	}
 	
-	public function where(string $field, string $operator, $value) : WhereQuery
+	public function where(string $field, string $operator, $value, bool $openBrace = false) : WhereQuery
 	{
-		return (new WhereQuery($this))($field, $operator, $value);
+		return (new WhereQuery($this))($field, $operator, $value, $openBrace);
 	}
 	
 	public function orderby(string $field, string ... $fields) : OrderByQuery

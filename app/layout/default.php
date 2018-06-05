@@ -58,11 +58,11 @@ $__user__ = $__user__ ?? null;
 						</a>
 					</li>
 					<li class="d-none d-md-inline-block">
-						<div class="text-button">
+						<a class="text-button" href="/product">
 							<span>
-								collections
+								products
 							</span>
-						</div>
+						</a>
 					</li>
 				</ul>
 			</div>

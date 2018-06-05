@@ -5,6 +5,7 @@ namespace app\controller;
 use app\model\Admin;
 use vendor\auxiliary\Logger;
 use vendor\core\base\EntityBase;
+use vendor\core\database\exception\DatabaseCommonException;
 use vendor\core\routing\RouteBase;
 
 class AdminController extends AppController
@@ -53,6 +54,56 @@ class AdminController extends AppController
 		
 		unset($data["entityName"]);
 		
-		$this->model->updateEntity($entityName, $data);
+		try
+		{
+			$this->model->updateEntity( $entityName, $data );
+			echo "success";
+		}
+		catch(DatabaseCommonException $exception)
+		{
+			echo $exception->getMessage();
+		}
+	}
+	
+	public function createAction() : void
+	{
+		$this->setViewable(false);
+		
+		$data = $this->route->decodeJSON();
+		
+		$entityName = $data["entityName"];
+		
+		unset($data["entityName"]);
+		
+		try
+		{
+			$this->model->createEntity( $entityName, $data );
+			echo "success";
+		}
+		catch(DatabaseCommonException $exception)
+		{
+			echo $exception->getMessage();
+		}
+	}
+	
+	public function deleteAction() : void
+	{
+		$this->setViewable(false);
+		
+		$data = $this->route->decodeJSON();
+		
+		$entityName = $data["entityName"];
+		
+		unset($data["entityName"]);
+		
+		try
+		{
+			$this->model->deleteEntity( $entityName, $data );
+			echo "success";
+		}
+		catch(DatabaseCommonException $exception)
+		{
+			echo $exception->getMessage();
+		}
 	}
 }

@@ -1,0 +1,17 @@
+Date: Tue, 05 Jun 18 05:56:09 +0300
+|Exception
+|Type: vendor\exception\FileNotFoundException
+|Message: [CRITICAL] File <D:\Files\Documents\Solutions\PHP\inayelle.store/app/view/product/Index.php> not found
+|File: D:\Files\Documents\Solutions\PHP\inayelle.store\vendor\core\View.php
+|Line: 28
+|Code: 0
+|Inner exception: null
+------------------------------------------------------------------------------------------------------------------------------Date: Tue, 05 Jun 18 05:57:12 +0300
+|Exception
+|Type: vendor\exception\FileNotFoundException
+|Message: [CRITICAL] File <D:\Files\Documents\Solutions\PHP\inayelle.store/app/view/product/Index.php> not found
+|File: D:\Files\Documents\Solutions\PHP\inayelle.store\vendor\core\View.php
+|Line: 28
+|Code: 0
+|Inner exception: null
+------------------------------------------------------------------------------------------------------------------------------

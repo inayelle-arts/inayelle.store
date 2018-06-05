@@ -2,7 +2,6 @@
 
 namespace app\model;
 
-use vendor\auxiliary\Logger;
 use vendor\core\base\EntityBase;
 use vendor\core\database\exception\DatabaseCommonException;
 
@@ -50,5 +49,31 @@ class Admin extends App
 		$entity = $entity::parseOne( $data );
 		
 		$entity->update();
+	}
+	
+	public function createEntity( string $entityName, array $data )
+	{
+		/** @var EntityBase $entity */
+		
+		$entityName = "app\\model\\entity\\" . $entityName;
+		
+		$entity = new $entityName();
+		
+		$entity = $entity::parseOne( $data );
+		
+		$entity->create();
+	}
+	
+	public function deleteEntity( string $entityName, array $data )
+	{
+		/** @var EntityBase $entity */
+		
+		$entityName = "app\\model\\entity\\" . $entityName;
+		
+		$entity = new $entityName();
+		
+		$entity = $entity::parseOne( $data );
+		
+		$entity->delete();
 	}
 }
