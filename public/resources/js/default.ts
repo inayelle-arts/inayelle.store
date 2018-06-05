@@ -166,7 +166,6 @@ namespace Default
 		{
 			this.cartButton.on( "click", () =>
 			{
-				console.log("SOS");
 				this.isOpened = !this.isOpened;
 				
 				this.width = this.dom.width();

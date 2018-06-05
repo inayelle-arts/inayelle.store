@@ -23,23 +23,21 @@ class Product
 	
 	public createDOM(): void
 	{
-		this.dom = $( document.createElement( "a" ) );
-		this.dom.attr( "href", `/product/see?id=${this.id}` );
-		this.dom.attr( "target", "_blank" );
+		this.dom = $( document.createElement( "div" ) );
 		this.dom.addClass( "cart-item" );
 		this.dom.attr( "data-cart-item-id", "" + this.id );
 		
 		let html =
-			`<div class=\"cart-item-img\">` +
+			`<a class=\"cart-item-img\" href="/product/see?id=${this.id}" target="_blank">` +
 			`<img src=\"/resources/img/product_repo/${this.primaryImage}\" alt=\"alt\">` +
-			"</div>" +
+			"</a>" +
 			"<div class=\"cart-item-title\">" +
 			`${this.name}` +
 			"</div>" +
 			"<div class=\"cart-item-cost\">" +
 			`${this.total_cost / 100.0}$` +
 			"</div>" +
-			`<div onclick='remove(${this.id})' style="cursor: pointer;">X</div>`;
+			`<div onclick='remove(${this.id})' style="cursor: pointer; padding-right: 15px; font-size: 18px"><i class="fas fa-times"></i></div>`;
 		
 		this.dom.html( html );
 	}
@@ -60,12 +58,10 @@ class Cart
 	private ids: Array<number>;
 	
 	private openCartDOM: JQuery<HTMLElement>;
-	private submitCartDOM: JQuery<HTMLElement>;
+	private purchaseButtonDOM: JQuery<HTMLElement>;
 	
 	private isCached: boolean = false;
 	private isClosed: boolean = true;
-	
-	private static increment: number = 0;
 	
 	constructor()
 	{
@@ -73,6 +69,8 @@ class Cart
 		this.openCartDOM = $( "#open-cart-button" );
 		this.counterDOM = $( "#cart-emptyness" );
 		this.containerDOM = $( "#cart-item-holder" );
+		
+		this.purchaseButtonDOM = $( "#purchase-button" );
 		
 		let storageString = localStorage.getItem( "CART-ID-ARRAY" );
 		if( storageString === null )
@@ -84,11 +82,21 @@ class Cart
 		else
 			this.ids = JSON.parse( storageString );
 		
+		this.purchaseButtonDOM.on( "click", () =>
+		{
+			let json = JSON.stringify( this.ids );
+			$( "#purchase-data" ).val( json );
+			
+			return true;
+		} );
 		
 		this.idCount = this.ids.length;
 		
 		if( this.idCount !== 0 )
+		{
 			this.counterDOM.text( `${this.idCount} items` );
+			this.purchaseButtonDOM.show();
+		}
 		
 		this.openCartDOM.on( "click", () =>
 		{
@@ -102,7 +110,6 @@ class Cart
 		if( this.ids.length !== 0 && !this.isCached )
 		{
 			let data = JSON.stringify( this.ids );
-			console.log( data );
 			
 			$.ajax(
 				{
@@ -112,12 +119,8 @@ class Cart
 					success: ( response: string ) =>
 					{
 						if( response === "noitems" )
-						{
-							console.log( response );
 							return;
-						}
 						
-						console.log( response );
 						let data: Array<[string]> = JSON.parse( response );
 						let products: Array<Product> = new Array<Product>( 0 );
 						
@@ -129,7 +132,6 @@ class Cart
 						
 						products.forEach( ( product: Product ) =>
 						                  {
-							                  console.log( product );
 							                  product.createDOM();
 							                  this.containerDOM.append( product.getDOM() );
 						                  } );
@@ -142,12 +144,15 @@ class Cart
 	
 	public put( id: number )
 	{
+		this.purchaseButtonDOM.show();
 		this.isCached = false;
 		if( this.ids.indexOf( id ) !== -1 )
 			return;
 		this.ids.push( id );
 		let storageString = JSON.stringify( this.ids );
 		localStorage.setItem( "CART-ID-ARRAY", storageString );
+		this.idCount = this.ids.length;
+		this.counterDOM.text( this.idCount + " items" );
 		this.load();
 	}
 	
@@ -170,9 +175,31 @@ class Cart
 		                  } );
 		
 		this.ids = filter;
+		
+		this.idCount = this.ids.length;
+		
+		if( this.idCount === 0 )
+		{
+			this.purchaseButtonDOM.hide();
+			this.counterDOM.text( "empty cart" );
+		}
+		else
+			this.counterDOM.text( this.ids.length + " items" );
+		
+		
 		let storageString = JSON.stringify( this.ids );
-		this.counterDOM.text( this.ids.length + " items" );
 		localStorage.setItem( "CART-ID-ARRAY", storageString );
+	}
+	
+	public clear()
+	{
+		localStorage.removeItem( "CART-ID-ARRAY" );
+		this.ids = new Array<number>( 0 );
+		this.idCount = 0;
+		this.isCached = true;
+		this.purchaseButtonDOM.hide();
+		this.counterDOM.text( "empty cart" );
+		this.containerDOM.children().remove();
 	}
 }
 
@@ -182,7 +209,6 @@ let globalCart: Cart = null;
 $( () =>
    {
 	   globalCart = new Cart();
-	   console.log( "CART CREATED" );
    } );
 
 function remove( id: number )

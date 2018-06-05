@@ -118,7 +118,6 @@ var Default;
         Cart.prototype.setEventHandlers = function () {
             var _this = this;
             this.cartButton.on("click", function () {
-                console.log("SOS");
                 _this.isOpened = !_this.isOpened;
                 _this.width = _this.dom.width();
                 _this.dom.on("transitionend webkitTransitionEnd oTransitionEnd", function () {

@@ -57,6 +57,4 @@ class Product extends App
 		
 		return $entities;
 	}
-	
-	
 }

@@ -4,21 +4,19 @@ var Product = /** @class */ (function () {
             this["" + field] = json["" + field];
     }
     Product.prototype.createDOM = function () {
-        this.dom = $(document.createElement("a"));
-        this.dom.attr("href", "/product/see?id=" + this.id);
-        this.dom.attr("target", "_blank");
+        this.dom = $(document.createElement("div"));
         this.dom.addClass("cart-item");
         this.dom.attr("data-cart-item-id", "" + this.id);
-        var html = "<div class=\"cart-item-img\">" +
+        var html = "<a class=\"cart-item-img\" href=\"/product/see?id=" + this.id + "\" target=\"_blank\">" +
             ("<img src=\"/resources/img/product_repo/" + this.primaryImage + "\" alt=\"alt\">") +
-            "</div>" +
+            "</a>" +
             "<div class=\"cart-item-title\">" +
             ("" + this.name) +
             "</div>" +
             "<div class=\"cart-item-cost\">" +
             (this.total_cost / 100.0 + "$") +
             "</div>" +
-            ("<div onclick='remove(" + this.id + ")' style=\"cursor: pointer;\">X</div>");
+            ("<div onclick='remove(" + this.id + ")' style=\"cursor: pointer; padding-right: 15px; font-size: 18px\"><i class=\"fas fa-times\"></i></div>");
         this.dom.html(html);
     };
     Product.prototype.getDOM = function () {
@@ -35,6 +33,7 @@ var Cart = /** @class */ (function () {
         this.openCartDOM = $("#open-cart-button");
         this.counterDOM = $("#cart-emptyness");
         this.containerDOM = $("#cart-item-holder");
+        this.purchaseButtonDOM = $("#purchase-button");
         var storageString = localStorage.getItem("CART-ID-ARRAY");
         if (storageString === null) {
             this.ids = new Array(0);
@@ -43,9 +42,16 @@ var Cart = /** @class */ (function () {
         }
         else
             this.ids = JSON.parse(storageString);
+        this.purchaseButtonDOM.on("click", function () {
+            var json = JSON.stringify(_this.ids);
+            $("#purchase-data").val(json);
+            return true;
+        });
         this.idCount = this.ids.length;
-        if (this.idCount !== 0)
+        if (this.idCount !== 0) {
             this.counterDOM.text(this.idCount + " items");
+            this.purchaseButtonDOM.show();
+        }
         this.openCartDOM.on("click", function () {
             _this.isClosed = !_this.isClosed;
             _this.load();
@@ -55,24 +61,19 @@ var Cart = /** @class */ (function () {
         var _this = this;
         if (this.ids.length !== 0 && !this.isCached) {
             var data = JSON.stringify(this.ids);
-            console.log(data);
             $.ajax({
                 url: "/product/getEntitiesById",
                 method: "POST",
                 data: { data: data },
                 success: function (response) {
-                    if (response === "noitems") {
-                        console.log(response);
+                    if (response === "noitems")
                         return;
-                    }
-                    console.log(response);
                     var data = JSON.parse(response);
                     var products = new Array(0);
                     data.forEach(function (value) {
                         products.push(new Product(value));
                     });
                     products.forEach(function (product) {
-                        console.log(product);
                         product.createDOM();
                         _this.containerDOM.append(product.getDOM());
                     });
@@ -82,12 +83,15 @@ var Cart = /** @class */ (function () {
         }
     };
     Cart.prototype.put = function (id) {
+        this.purchaseButtonDOM.show();
         this.isCached = false;
         if (this.ids.indexOf(id) !== -1)
             return;
         this.ids.push(id);
         var storageString = JSON.stringify(this.ids);
         localStorage.setItem("CART-ID-ARRAY", storageString);
+        this.idCount = this.ids.length;
+        this.counterDOM.text(this.idCount + " items");
         this.load();
     };
     Cart.prototype.remove = function (id) {
@@ -103,17 +107,30 @@ var Cart = /** @class */ (function () {
                 filter.push(value);
         });
         this.ids = filter;
+        this.idCount = this.ids.length;
+        if (this.idCount === 0) {
+            this.purchaseButtonDOM.hide();
+            this.counterDOM.text("empty cart");
+        }
+        else
+            this.counterDOM.text(this.ids.length + " items");
         var storageString = JSON.stringify(this.ids);
-        this.counterDOM.text(this.ids.length + " items");
         localStorage.setItem("CART-ID-ARRAY", storageString);
     };
-    Cart.increment = 0;
+    Cart.prototype.clear = function () {
+        localStorage.removeItem("CART-ID-ARRAY");
+        this.ids = new Array(0);
+        this.idCount = 0;
+        this.isCached = true;
+        this.purchaseButtonDOM.hide();
+        this.counterDOM.text("empty cart");
+        this.containerDOM.children().remove();
+    };
     return Cart;
 }());
 var globalCart = null;
 $(function () {
     globalCart = new Cart();
-    console.log("CART CREATED");
 });
 function remove(id) {
     globalCart.remove(id);

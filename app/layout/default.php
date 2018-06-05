@@ -29,10 +29,13 @@ $__user__ = $__user__ ?? null;
 	<h3 class="title">shopping bag</h3>
 	<hr>
 	<div class="text-muted" id="cart-emptyness">empty now</div>
-	<div style="button" id="purchase-button">purchase</div>
+	<form action="/purchase" method="post">
+		<input type="text" name="purchase-data" id="purchase-data" title="none" style="display: none"/>
+		<input type="submit" class="super-button" id="purchase-button" style="padding: 1px; margin: 0 auto !important; display: none;" value="purchase">
+	</form>
 	<div id="cart-item-holder">
-	
-	
+
+
 	</div>
 </div>
 
@@ -116,7 +119,7 @@ $__user__ = $__user__ ?? null;
 			</div>
 
 			<div class="col-3 col-sm-2 col-md-1">
-				<div id="open-cart-button" class="button">
+				<div id="open-cart-button" class="button" style="padding: 1.5em">
 					<i id="cart-button-image" class="fas fa-shopping-cart fa-lg"></i>
 				</div>
 			</div>
