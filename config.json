@@ -24,8 +24,8 @@
 		"private_key": "",
 		"public_key":  ""
 	},
-	"gmail" : {
-		"email" : "noreply.inayelle.store@gmail.com",
+	"gmail":       {
+		"email":    "noreply.inayelle.store@gmail.com",
 		"password": "kyq8MW8c4nQ9"
 	},
 	"logging":     {

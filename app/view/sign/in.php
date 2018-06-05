@@ -20,7 +20,7 @@ $refresh = rand();
 	
 	<a href="/sign/up" id="another" class="text-button-muted">or create a new account</a>
 	
-	<div id="login-form-submit" class="button">Come in</div>
+	<div id="login-form-submit" class="super-button">Come in</div>
 	
 </form>
 
@@ -33,7 +33,7 @@ $refresh = rand();
 
 	<div class="text-button-muted" id="back-to-sign-in">back to sign in</div>
 	
-	<div id="reset-form-submit" class="button">Send confirmation</div>
+	<div id="reset-form-submit" class="super-button">Send confirmation</div>
 	
 </form>
 

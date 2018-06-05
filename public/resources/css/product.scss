@@ -1,0 +1,121 @@
+@import "default";
+
+#product-container .button
+{
+	font-size  : 22px;
+	margin-top : 20px;
+	width      : 100%;
+	border     : 1px solid $gray;
+}
+
+@include media-xs
+{
+	.product
+	{
+		margin-top : 25px;
+	}
+}
+
+@include media-md
+{
+	.product
+	{
+		margin-top : initial;
+	}
+}
+
+.hidden
+{
+	display : none;
+}
+
+#filters
+{
+	h2
+	{
+		width      : 100%;
+		font-size  : 16px;
+		text-align : center;
+	}
+	
+	input, label
+	{
+		font-size : 16px;
+	}
+	
+	#prices
+	{
+		padding : 10px;
+		label
+		{
+			width     : 15%;
+			max-width : 15%;
+		}
+		
+		input
+		{
+			width       : 29%;
+			max-width   : 29%;
+			margin-left : 5px;
+		}
+	}
+	
+	#categories
+	{
+		padding : 10px;
+	}
+	
+	fieldset
+	{
+		text-align : center;
+		border     : none;
+		outline    : none;
+	}
+}
+
+#apply-filters
+{
+	@include media-xs
+	{
+		width : 100% !important;
+	}
+	
+	@include media-md
+	{
+		width  : 31% !important;
+		margin : 0 auto;
+	}
+}
+
+.super-button
+{
+	text-shadow      : none;
+	margin-top       : 10px;
+	padding          : 15px 15px;
+	display          : block;
+	background-color : rgba(0, 0, 0, 0.6);
+	border           : 1px solid $border;
+	color            : $white !important;
+	text-transform   : uppercase;
+	text-align       : center;
+	font-size        : 13px;
+	cursor           : pointer !important;
+	@include transition(background-color, 0.7s);
+	&:hover
+	{
+		color            : $black !important;
+		background-color : $white;
+	}
+	
+	width            : fit-content !important;
+}
+
+#update-button
+{
+	margin : 0 auto;
+}
+
+.input-grouping
+{
+	display : inline-block;
+}

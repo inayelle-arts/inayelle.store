@@ -27,7 +27,23 @@ $__user__ = $__user__ ?? null;
 
 <div id="cart">
 	<h3 class="title">shopping bag</h3>
+	<hr>
 	<div class="text-muted" id="cart-emptyness">empty now</div>
+	<div id="cart-item-holder">
+	
+		<div class="cart-item">
+			<div class="cart-item-img">
+				<img src="/resources/img/product_repo/default_product.jpg" alt="d">
+			</div>
+			<div class="cart-item-title">
+				title
+			</div>
+			<div class="cart-item-cost">
+				cost
+			</div>
+		</div>
+		
+	</div>
 </div>
 
 <header id="header">
@@ -110,7 +126,7 @@ $__user__ = $__user__ ?? null;
 			</div>
 
 			<div class="col-3 col-sm-2 col-md-1">
-				<div id="cart-button" class="button">
+				<div id="open-cart-button" class="button">
 					<i id="cart-button-image" class="fas fa-shopping-cart fa-lg"></i>
 				</div>
 			</div>
@@ -148,8 +164,15 @@ $__user__ = $__user__ ?? null;
 				<h4>
 					<a href="/" class="button">categories</a>
 				</h4>
+			</li>
+			<li>
 				<h4>
 					<a href="/arrivals" class="button">arrivals</a>
+				</h4>
+			</li>
+			<li>
+				<h4>
+					<a href="/product" class="button">products</a>
 				</h4>
 			</li>
 		</ul>
@@ -158,6 +181,7 @@ $__user__ = $__user__ ?? null;
 
 <script type="text/javascript" src="/resources/js/jquery.js" defer></script>
 <script type="text/javascript" src="/resources/js/default.js?v=<?= $refresh ?>" defer></script>
+<script type="text/javascript" src="/resources/js/cart.js?v=<?= $refresh ?>" defer></script>
 
 <div id="content-footer">
 

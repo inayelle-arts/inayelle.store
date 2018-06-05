@@ -134,9 +134,10 @@ ul {
 #header #sign-options li {
   display: inline-block;
 }
-#header #mobile-menu-button, #header #cart-button {
+#header #mobile-menu-button, #header #open-cart-button {
   width: 100%;
   text-align: center;
+  color: #020104 !important;
 }
 
 #content {
@@ -283,9 +284,11 @@ ul {
   -moz-transition: background-color 1s;
   -o-transition: background-color 1s;
   transition: background-color 1s;
+  color: #F7F7F6;
 }
 .button:hover, #content .special-card .special-card-button:hover {
   background: #dfdfdb;
+  color: #020104;
 }
 .button:focus, #content .special-card .special-card-button:focus, .button:active, #content .special-card .special-card-button:active {
   outline: none;
@@ -365,7 +368,7 @@ ul {
   color: black;
 }
 
-.card, #content .glasses, #content .t-shirt, #content .sweater, #content .shoes, .card-top-left, .card-left, #content .watch, .card-right, #content .tuxedo {
+.card, #content .underwear, #content .t-shirt, #content .sweater, #content .shoes, .card-top-left, .card-left, #content .watch, .card-right, #content .tuxedo {
   min-width: 300px;
   min-height: 300px;
   display: flex;
@@ -376,16 +379,16 @@ ul {
   background-size: auto;
   text-shadow: 1px 1px 1px #020104;
 }
-.card .card-title, #content .glasses .card-title, #content .t-shirt .card-title, #content .sweater .card-title, #content .shoes .card-title, .card-top-left .card-title, .card-left .card-title, #content .watch .card-title, .card-right .card-title, #content .tuxedo .card-title, .card .card-subtitle, #content .glasses .card-subtitle, #content .t-shirt .card-subtitle, #content .sweater .card-subtitle, #content .shoes .card-subtitle, .card-top-left .card-subtitle, .card-left .card-subtitle, #content .watch .card-subtitle, .card-right .card-subtitle, #content .tuxedo .card-subtitle {
+.card .card-title, #content .underwear .card-title, #content .t-shirt .card-title, #content .sweater .card-title, #content .shoes .card-title, .card-top-left .card-title, .card-left .card-title, #content .watch .card-title, .card-right .card-title, #content .tuxedo .card-title, .card .card-subtitle, #content .underwear .card-subtitle, #content .t-shirt .card-subtitle, #content .sweater .card-subtitle, #content .shoes .card-subtitle, .card-top-left .card-subtitle, .card-left .card-subtitle, #content .watch .card-subtitle, .card-right .card-subtitle, #content .tuxedo .card-subtitle {
   color: #F7F7F6;
   width: fit-content;
   font-size: 30px;
   text-transform: uppercase;
 }
-.card .card-subtitle, #content .glasses .card-subtitle, #content .t-shirt .card-subtitle, #content .sweater .card-subtitle, #content .shoes .card-subtitle, .card-top-left .card-subtitle, .card-left .card-subtitle, #content .watch .card-subtitle, .card-right .card-subtitle, #content .tuxedo .card-subtitle {
+.card .card-subtitle, #content .underwear .card-subtitle, #content .t-shirt .card-subtitle, #content .sweater .card-subtitle, #content .shoes .card-subtitle, .card-top-left .card-subtitle, .card-left .card-subtitle, #content .watch .card-subtitle, .card-right .card-subtitle, #content .tuxedo .card-subtitle {
   font-size: 14px;
 }
-.card .button, .card #content .special-card .special-card-button, #content .special-card .card .special-card-button, #content .glasses .button, #content .glasses .special-card .special-card-button, #content .special-card .glasses .special-card-button, #content .t-shirt .button, #content .t-shirt .special-card .special-card-button, #content .special-card .t-shirt .special-card-button, #content .sweater .button, #content .sweater .special-card .special-card-button, #content .special-card .sweater .special-card-button, #content .shoes .button, #content .shoes .special-card .special-card-button, #content .special-card .shoes .special-card-button, .card-top-left .button, .card-top-left #content .special-card .special-card-button, #content .special-card .card-top-left .special-card-button, .card-left .button, .card-left #content .special-card .special-card-button, #content .special-card .card-left .special-card-button, #content .watch .button, #content .watch .special-card .special-card-button, #content .special-card .watch .special-card-button, .card-right .button, .card-right #content .special-card .special-card-button, #content .special-card .card-right .special-card-button, #content .tuxedo .button, #content .tuxedo .special-card .special-card-button, #content .special-card .tuxedo .special-card-button {
+.card .button, .card #content .special-card .special-card-button, #content .special-card .card .special-card-button, #content .underwear .button, #content .underwear .special-card .special-card-button, #content .special-card .underwear .special-card-button, #content .t-shirt .button, #content .t-shirt .special-card .special-card-button, #content .special-card .t-shirt .special-card-button, #content .sweater .button, #content .sweater .special-card .special-card-button, #content .special-card .sweater .special-card-button, #content .shoes .button, #content .shoes .special-card .special-card-button, #content .special-card .shoes .special-card-button, .card-top-left .button, .card-top-left #content .special-card .special-card-button, #content .special-card .card-top-left .special-card-button, .card-left .button, .card-left #content .special-card .special-card-button, #content .special-card .card-left .special-card-button, #content .watch .button, #content .watch .special-card .special-card-button, #content .special-card .watch .special-card-button, .card-right .button, .card-right #content .special-card .special-card-button, #content .special-card .card-right .special-card-button, #content .tuxedo .button, #content .tuxedo .special-card .special-card-button, #content .special-card .tuxedo .special-card-button {
   text-shadow: none;
   margin-top: 10px;
   padding: 15px 30px;
@@ -394,7 +397,7 @@ ul {
   border: 1px solid #F7F7F6;
   color: #F7F7F6;
 }
-.card .button:hover, .card #content .special-card .special-card-button:hover, #content .special-card .card .special-card-button:hover, #content .glasses .button:hover, #content .glasses .special-card .special-card-button:hover, #content .special-card .glasses .special-card-button:hover, #content .t-shirt .button:hover, #content .t-shirt .special-card .special-card-button:hover, #content .special-card .t-shirt .special-card-button:hover, #content .sweater .button:hover, #content .sweater .special-card .special-card-button:hover, #content .special-card .sweater .special-card-button:hover, #content .shoes .button:hover, #content .shoes .special-card .special-card-button:hover, #content .special-card .shoes .special-card-button:hover, .card-top-left .button:hover, .card-top-left #content .special-card .special-card-button:hover, #content .special-card .card-top-left .special-card-button:hover, .card-left .button:hover, .card-left #content .special-card .special-card-button:hover, #content .special-card .card-left .special-card-button:hover, #content .watch .button:hover, #content .watch .special-card .special-card-button:hover, #content .special-card .watch .special-card-button:hover, .card-right .button:hover, .card-right #content .special-card .special-card-button:hover, #content .special-card .card-right .special-card-button:hover, #content .tuxedo .button:hover, #content .tuxedo .special-card .special-card-button:hover, #content .special-card .tuxedo .special-card-button:hover {
+.card .button:hover, .card #content .special-card .special-card-button:hover, #content .special-card .card .special-card-button:hover, #content .underwear .button:hover, #content .underwear .special-card .special-card-button:hover, #content .special-card .underwear .special-card-button:hover, #content .t-shirt .button:hover, #content .t-shirt .special-card .special-card-button:hover, #content .special-card .t-shirt .special-card-button:hover, #content .sweater .button:hover, #content .sweater .special-card .special-card-button:hover, #content .special-card .sweater .special-card-button:hover, #content .shoes .button:hover, #content .shoes .special-card .special-card-button:hover, #content .special-card .shoes .special-card-button:hover, .card-top-left .button:hover, .card-top-left #content .special-card .special-card-button:hover, #content .special-card .card-top-left .special-card-button:hover, .card-left .button:hover, .card-left #content .special-card .special-card-button:hover, #content .special-card .card-left .special-card-button:hover, #content .watch .button:hover, #content .watch .special-card .special-card-button:hover, #content .special-card .watch .special-card-button:hover, .card-right .button:hover, .card-right #content .special-card .special-card-button:hover, #content .special-card .card-right .special-card-button:hover, #content .tuxedo .button:hover, #content .tuxedo .special-card .special-card-button:hover, #content .special-card .tuxedo .special-card-button:hover {
   background-color: #F7F7F6;
   color: #020104;
 }
@@ -427,6 +430,22 @@ ul {
   margin-bottom: 30px;
   margin-left: 30px;
   align-self: flex-start;
+}
+
+.cart-item {
+  border-bottom: 1px solid rgba(15, 16, 15, 0.05);
+}
+.cart-item .cart-item-img {
+  width: 50%;
+  display: inline-block;
+}
+.cart-item .cart-item-img img {
+  width: 100%;
+}
+.cart-item .cart-item-title, .cart-item .cart-item-cost {
+  width: 100%;
+  display: block;
+  font-size: 15px;
 }
 
 @media only screen and (min-width: 0) {
@@ -477,8 +496,8 @@ ul {
   background: url("/resources/img/index/tshirt.png");
   background-size: cover;
 }
-#content .glasses {
-  background: url("/resources/img/index/glasses.png") 100%;
+#content .underwear {
+  background: url("/resources/img/index/special-lower.png") 25%;
 }
 #content .special-parallax {
   height: 400px;
@@ -521,11 +540,34 @@ ul {
   padding: 5%;
 }
 #content .special-card .special-card-button {
-  border: 1px solid rgba(15, 16, 15, 0.05);
+  color: #22232A !important;
+  border: 1px solid rgba(15, 16, 15, 0.05) !important;
   font-size: 16px !important;
   display: inline-block !important;
   width: 50% !important;
   padding: 5% !important;
+}
+#content .super-button {
+  text-shadow: none;
+  margin-top: 10px;
+  padding: 15px 15px;
+  display: block;
+  background-color: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(15, 16, 15, 0.05);
+  color: #F7F7F6 !important;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 13px;
+  cursor: pointer !important;
+  -webkit-transition: background-color 0.7s;
+  -moz-transition: background-color 0.7s;
+  -o-transition: background-color 0.7s;
+  transition: background-color 0.7s;
+  width: fit-content !important;
+}
+#content .super-button:hover {
+  color: #020104 !important;
+  background-color: #F7F7F6;
 }
 
 /*# sourceMappingURL=index.css.map */

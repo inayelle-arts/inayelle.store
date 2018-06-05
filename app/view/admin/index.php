@@ -4,7 +4,7 @@ $refresh = rand();
 
 ?>
 
-<link rel="stylesheet" href="/resources/css/admin.css">
+<link rel="stylesheet" href="/resources/css/admin.css?v=123">
 <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
 
 <div class="container">
@@ -18,11 +18,11 @@ $refresh = rand();
 			<option value="BrandEntity">brands</option>
 			<option value="ImageEntity">images_storage</option>
 		</select>
-		<div class="button" id="save-changes-button">Save changes</div>
-		<div class="button" id="add-row-button">Add row</div>
+		<div class="super-button" id="save-changes-button">Save changes</div>
+		<div class="super-button" id="add-row-button">Add row</div>
 	</form>
 
-	<table class="table table-striped table-bordered" id="table">
+	<table class="table table-striped table-bordered" id="table" style="margin-bottom: 10%">
 		<thead class="thead-dark">
 		<tr id="table-head">
 

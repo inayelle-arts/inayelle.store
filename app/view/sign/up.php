@@ -18,7 +18,7 @@ $refresh = rand();
 	<label id="password-error" class="error" for="password" style=""></label>
 	
 	<a href="/sign/in" id="another" class="text-button">or sign in with existing account</a>
-	<div id="sign-up-button" class="button">Come in</div>
+	<div id="sign-up-button" class="super-button">Come in</div>
 </form>
 
 

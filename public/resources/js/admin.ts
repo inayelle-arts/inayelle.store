@@ -423,7 +423,7 @@ namespace Admin
 		{
 			let result = "";
 			
-			let value = <string>this.valueDOM.text();
+			let value = (<string>this.valueDOM.text() === "" ? null : <string>this.valueDOM.text());
 			
 			result += `"${this.columnName}": ${JSON.stringify( value )}`;
 			

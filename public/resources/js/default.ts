@@ -133,9 +133,6 @@ namespace Default
 		private emptynessMessage: JQuery<HTMLElement>;
 		private width: number;
 		
-		private static DEFAULT_BACKGROUND = "/resources/img/background.png";
-		private static CART_BACKGROUND = "/resources/img/cart-background.png";
-		
 		
 		private static CART_BUTTON_OPENED = "fa-times";
 		private static CART_BUTTON_CLOSED = "fa-shopping-cart";
@@ -143,7 +140,7 @@ namespace Default
 		constructor()
 		{
 			super( $( "#cart" ) );
-			this.cartButton = $( "#cart-button" );
+			this.cartButton = $( "#open-cart-button" );
 			this.cartButtonImage = $( "#cart-button-image" );
 			this.emptynessMessage = $( "#cart-emptyness" );
 			this.isOpened = false;
@@ -169,6 +166,7 @@ namespace Default
 		{
 			this.cartButton.on( "click", () =>
 			{
+				console.log("SOS");
 				this.isOpened = !this.isOpened;
 				
 				this.width = this.dom.width();

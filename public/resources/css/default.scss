@@ -119,10 +119,11 @@ ul
 		}
 	}
 	
-	#mobile-menu-button, #cart-button
+	#mobile-menu-button, #open-cart-button
 	{
 		width      : 100%;
 		text-align : center;
+		color      : $black !important;
 	}
 	
 	margin-bottom : 1px;
@@ -306,10 +307,12 @@ ul
 	cursor         : pointer;
 	background     : transparent;
 	@include transition(background-color, 1s);
+	color          : $white;
 	
 	&:hover
 	{
 		background : darken($white, 10%);
+		color      : $black;
 	}
 	
 	&:focus, &:active
@@ -501,6 +504,28 @@ ul
 		margin-bottom : 30px;
 		margin-left   : 30px;
 		align-self    : flex-start;
+	}
+}
+
+.cart-item
+{
+	border-bottom : 1px solid $border;
+	
+	.cart-item-img
+	{
+		width   : 50%;
+		img
+		{
+			width : 100%;
+		}
+		display : inline-block;
+	}
+	
+	.cart-item-title, .cart-item-cost
+	{
+		width     : 100%;
+		display   : block;
+		font-size : 15px;
 	}
 }
 

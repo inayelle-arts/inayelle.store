@@ -10,7 +10,7 @@ $discounted = $discounted ?? [];
 	<div class="card-title">
 		new arrivals
 	</div>
-	<a class="button" href="/arrivals" style="color: white !important;">
+	<a class="super-button" href="/arrivals">
 		take a look
 	</a>
 </div>
@@ -23,9 +23,9 @@ $discounted = $discounted ?? [];
 					tuxedo
 				</div>
 
-				<div class="button">
-					must fit you
-				</div>
+				<a class="super-button" href="/product?cat=1">
+					must fit you fabuluos
+				</a>
 			</div>
 		</div>
 
@@ -35,9 +35,9 @@ $discounted = $discounted ?? [];
 					shoes
 				</div>
 
-				<div class="button">
+				<a class="super-button" href="/product?cat=2">
 					do sports freely
-				</div>
+				</a>
 			</div>
 		</div>
 	</div>
@@ -48,9 +48,9 @@ $discounted = $discounted ?? [];
 					sweater
 				</div>
 
-				<div class="button">
+				<a class="super-button" href="/product?cat=3">
 					warms nice
-				</div>
+				</a>
 			</div>
 		</div>
 		<div class="col-12 col-lg-4">
@@ -59,9 +59,9 @@ $discounted = $discounted ?? [];
 					elegant watches
 				</div>
 
-				<div class="button">
+				<a class="super-button" href="/product?cat=4">
 					keep solid
-				</div>
+				</a>
 			</div>
 		</div>
 	</div>
@@ -71,11 +71,8 @@ $discounted = $discounted ?? [];
 	<div class="card-title">
 		about us
 	</div>
-	<div class="card-subtitle">
-		company & team
-	</div>
-	<div class="button">
-		kek
+	<div class="super-button">
+		feel free to be in touch
 	</div>
 </div>
 
@@ -87,20 +84,20 @@ $discounted = $discounted ?? [];
 					fresh look t-shirt
 				</div>
 
-				<div class="button">
+				<a class="super-button" href="/product?cat=5">
 					feel the freedom
-				</div>
+				</a>
 			</div>
 		</div>
 		<div class="col col-lg-6">
-			<div class="glasses">
+			<div class="underwear">
 				<div class="card-title">
-					casual glasses
+					underwear
 				</div>
 
-				<div class="button">
-					look forward
-				</div>
+				<a class="super-button" href="/product?cat=6">
+					become attractive
+				</a>
 			</div>
 		</div>
 	</div>
@@ -119,7 +116,7 @@ $discounted = $discounted ?? [];
 			<? if( $item->discount === 0 ): ?>
 				<? continue; ?>
 			<? endif; ?>
-			<div class="col-12 col-md-6 col-lg-3">
+			<div class="col-12 col-md-6 col-lg-4 col-xl-3">
 				<div class="special-card">
 					<div class="special-card-img">
 						<img src="/resources/img/product_repo<?= $item->getPrimaryImagePath() ?>" alt="discounted-image">

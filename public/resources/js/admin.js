@@ -277,7 +277,7 @@ var Admin;
         };
         Field.prototype.toJSON = function () {
             var result = "";
-            var value = this.valueDOM.text();
+            var value = (this.valueDOM.text() === "" ? null : this.valueDOM.text());
             result += "\"" + this.columnName + "\": " + JSON.stringify(value);
             return result;
         };

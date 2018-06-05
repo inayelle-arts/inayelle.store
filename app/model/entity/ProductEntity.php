@@ -2,6 +2,7 @@
 
 namespace app\model\entity;
 
+use vendor\auxiliary\Logger;
 use vendor\core\base\EntityBase;
 use vendor\core\base\GetSet;
 
@@ -20,6 +21,7 @@ use vendor\core\base\GetSet;
  * @property BrandEntity   $brand
  * @property string        $color
  * @property ImageEntity[] $images
+ * @property int           $total_cost
  */
 class ProductEntity extends EntityBase
 {
@@ -37,7 +39,8 @@ class ProductEntity extends EntityBase
 			"discount",
 			"size_id",
 			"brand_id",
-			"color"
+			"color",
+			"total_cost"
 		];
 	
 	/** @var string $name */
@@ -74,6 +77,9 @@ class ProductEntity extends EntityBase
 	/** @var string $color */
 	protected $color;
 	
+	/** @var int $total_cost */
+	protected $total_cost;
+	
 	/** @var ImageEntity[] $images */
 	private $images;
 	
@@ -89,6 +95,19 @@ class ProductEntity extends EntityBase
 				return $image->path;
 		
 		return $this->images[0]->path;
+	}
+	
+	public function toJSON() : string
+	{
+		$json = parent::toJSON();
+		
+		$json[strlen( $json ) - 1] = ",";
+		
+		$json .= "\"primaryImage\": \"{$this->getPrimaryImagePath()}\"}";
+		
+		Logger::message( $json );
+		
+		return $json;
 	}
 	
 	/**

@@ -335,7 +335,7 @@ ul {
   border-top-color: rgba(15, 16, 15, 0.05) !important;
 }
 
-.no-user-select, #login-form #login-form-submit, #login-form #reset-form-submit, #login-form #sign-up-button, #reset-form #login-form-submit, #reset-form #reset-form-submit, #reset-form #sign-up-button, #change-form #login-form-submit, #change-form #reset-form-submit, #change-form #sign-up-button, #header {
+.no-user-select, #header {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -448,101 +448,66 @@ ul {
   font-size: 15px;
 }
 
-h1 {
-  margin: 0 auto;
-  width: fit-content;
+#product-container .button {
+  font-size: 22px;
+  margin-top: 20px;
+  width: 100%;
+  border: 1px solid #46413B;
 }
 
-#footer {
-  display: none !important;
-}
-
-#content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-}
-
-#login-form, #reset-form, #change-form {
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 50%;
-}
 @media only screen and (min-width: 0) {
-  #login-form, #reset-form, #change-form {
-    width: 90%;
-  }
-  #login-form label, #reset-form label, #change-form label {
-    width: 100%;
-    text-align: center;
+  .product {
+    margin-top: 25px;
   }
 }
 @media only screen and (min-width: 768px) {
-  #login-form, #reset-form, #change-form {
-    width: 70%;
-  }
-  #login-form label, #reset-form label, #change-form label {
-    width: initial;
-    text-align: left;
+  .product {
+    margin-top: initial;
   }
 }
-@media only screen and (min-width: 992px) {
-  #login-form, #reset-form, #change-form {
-    width: 50%;
-  }
-}
-#login-form label, #login-form input, #reset-form label, #reset-form input, #change-form label, #change-form input {
-  display: block;
-  padding: 5px;
-}
-#login-form label, #reset-form label, #change-form label {
-  font-size: 24px;
-}
-#login-form input:focus, #login-form textarea:focus, #login-form select:focus, #reset-form input:focus, #reset-form textarea:focus, #reset-form select:focus, #change-form input:focus, #change-form textarea:focus, #change-form select:focus {
-  outline-offset: 0 !important;
-  outline: none !important;
-  box-shadow: 0 0 3px #BEBAB4 !important;
-  -moz-box-shadow: 0 0 3px #BEBAB4 !important;
-  -webkit-box-shadow: 0 0 3px #BEBAB4 !important;
-}
-#login-form input, #reset-form input, #change-form input {
-  height: 2em;
-  font-size: 18px;
-  border-radius: 5px;
-  border-color: rgba(15, 16, 15, 0.05);
-  width: 100%;
-}
-#login-form #another, #login-form #back-to-sign-in, #reset-form #another, #reset-form #back-to-sign-in, #change-form #another, #change-form #back-to-sign-in {
-  margin-top: 18px;
-  align-self: center;
-  width: fit-content;
-}
-#login-form #login-form-submit, #login-form #reset-form-submit, #login-form #sign-up-button, #reset-form #login-form-submit, #reset-form #reset-form-submit, #reset-form #sign-up-button, #change-form #login-form-submit, #change-form #reset-form-submit, #change-form #sign-up-button {
-  border: 1px solid #BEBAB4;
-  font-size: 16px;
-  margin-top: 20px;
-  align-self: center;
-}
-#login-form [id$=error], #reset-form [id$=error], #change-form [id$=error] {
-  display: block !important;
-  height: 2em;
-  font-size: 14px;
-}
-
-#reset-form {
+.hidden {
   display: none;
 }
 
-#forgot-pass-button {
-  align-self: center;
+#filters h2 {
+  width: 100%;
+  font-size: 16px;
+  text-align: center;
+}
+#filters input, #filters label {
+  font-size: 16px;
+}
+#filters #prices {
+  padding: 10px;
+}
+#filters #prices label {
+  width: 15%;
+  max-width: 15%;
+}
+#filters #prices input {
+  width: 29%;
+  max-width: 29%;
+  margin-left: 5px;
+}
+#filters #categories {
+  padding: 10px;
+}
+#filters fieldset {
+  text-align: center;
+  border: none;
+  outline: none;
 }
 
-#confirm-button {
-  margin-top: 20px;
+@media only screen and (min-width: 0) {
+  #apply-filters {
+    width: 100% !important;
+  }
+}
+@media only screen and (min-width: 768px) {
+  #apply-filters {
+    width: 31% !important;
+    margin: 0 auto;
+  }
 }
 
 .super-button {
@@ -568,4 +533,12 @@ h1 {
   background-color: #F7F7F6;
 }
 
-/*# sourceMappingURL=sign.css.map */
+#update-button {
+  margin: 0 auto;
+}
+
+.input-grouping {
+  display: inline-block;
+}
+
+/*# sourceMappingURL=product.css.map */

@@ -15,6 +15,5 @@ final class ProductType
 	public const SWEATER   = 3;
 	public const WATCH     = 4;
 	public const TSHIRT    = 5;
-	public const GLASSES   = 6;
-	public const UNDERWEAR = 7;
+	public const UNDERWEAR = 6;
 }

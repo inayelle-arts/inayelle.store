@@ -190,6 +190,8 @@ abstract class EntityBase
 	{
 		$result = "{";
 		
+		$result .= "\"id\": {$this->id},";
+		
 		foreach( static::FIELDS as $fieldName )
 		{
 			$jsonedField = json_encode( $fieldName );

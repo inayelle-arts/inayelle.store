@@ -1,10 +1,11 @@
 <?php
+
 $refresh = rand();
 /** @var \app\model\entity\ProductEntity $product */
 $product = $product ?? null;
 ?>
 
-<link rel="stylesheet" href="/resources/css/see.css?v=<?=$refresh?>" type="text/css">
+<link rel="stylesheet" href="/resources/css/see.css?v=<?= $refresh ?>" type="text/css">
 
 <div class="container">
 	
@@ -15,11 +16,12 @@ $product = $product ?? null;
 
 		<div class="row">
 			<div class="col-12 col-md-5">
-				<img style="width: 100%;" id="primary-image" src="/resources/img/product_repo<?= $product->getPrimaryImagePath(); ?>" alt="product image">
+				<img style="width: 100%;" id="primary-image" src="/resources/img/product_repo<?= $product->getPrimaryImagePath(); ?>"
+				     alt="product image" data-id="<?=$product->id?>">
 				
 				<? foreach( $product->images as $image ): ?>
 					<div class="small-img">
-						<img id="img-<?=$image->id?>" src="/resources/img/product_repo<?= $image->path ?>" alt="alter image">
+						<img id="img-<?= $image->id ?>" src="/resources/img/product_repo<?= $image->path ?>" alt="alter image">
 					</div>
 				
 				<? endforeach; ?>
@@ -36,6 +38,10 @@ $product = $product ?? null;
 				<b>In stock: </b> <?= ( $product->in_stock ? "yes" : "no" ) ?> <br>
 				<b>Discount: </b> <?= $product->discount ?>% <br>
 				<b>Color: </b> <?= $product->color ?> <br>
+				<b>Total cost: </b> <?= $product->total_cost / 100 ?>$ <br>
+
+
+				<div class="super-button" id="add-to-card-button">add to card</div>
 			</div>
 		</div>
 	
@@ -43,4 +49,4 @@ $product = $product ?? null;
 
 </div>
 
-<script type="text/javascript" src="/resources/js/see.js?v=<?=$refresh?>" defer></script>
+<script type="text/javascript" src="/resources/js/see.js?v=<?= $refresh ?>" defer></script>

@@ -134,9 +134,10 @@ ul {
 #header #sign-options li {
   display: inline-block;
 }
-#header #mobile-menu-button, #header #cart-button {
+#header #mobile-menu-button, #header #open-cart-button {
   width: 100%;
   text-align: center;
+  color: #020104 !important;
 }
 
 #content {
@@ -283,9 +284,11 @@ ul {
   -moz-transition: background-color 1s;
   -o-transition: background-color 1s;
   transition: background-color 1s;
+  color: #F7F7F6;
 }
 .button:hover {
   background: #dfdfdb;
+  color: #020104;
 }
 .button:focus, .button:active {
   outline: none;
@@ -429,6 +432,22 @@ ul {
   align-self: flex-start;
 }
 
+.cart-item {
+  border-bottom: 1px solid rgba(15, 16, 15, 0.05);
+}
+.cart-item .cart-item-img {
+  width: 50%;
+  display: inline-block;
+}
+.cart-item .cart-item-img img {
+  width: 100%;
+}
+.cart-item .cart-item-title, .cart-item .cart-item-cost {
+  width: 100%;
+  display: block;
+  font-size: 15px;
+}
+
 @media only screen and (min-width: 0) {
   h1 {
     width: 100%;
@@ -480,6 +499,36 @@ ul {
 
 .bordered-image {
   border: 1px solid #46413B;
+}
+
+.super-button {
+  text-shadow: none;
+  margin-top: 10px;
+  padding: 15px 15px;
+  display: block;
+  background-color: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(15, 16, 15, 0.05);
+  color: #F7F7F6 !important;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 13px;
+  cursor: pointer !important;
+  -webkit-transition: background-color 0.7s;
+  -moz-transition: background-color 0.7s;
+  -o-transition: background-color 0.7s;
+  transition: background-color 0.7s;
+  width: fit-content !important;
+}
+.super-button:hover {
+  color: #020104 !important;
+  background-color: #F7F7F6;
+}
+
+#add-to-card-button {
+  width: 50% !important;
+  position: absolute;
+  bottom: 5%;
+  left: 25%;
 }
 
 /*# sourceMappingURL=see.css.map */

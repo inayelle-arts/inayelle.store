@@ -26,7 +26,7 @@ class Product extends App
 	 * @throws \vendor\core\database\exception\ConnectionFailureException
 	 * @throws \vendor\core\database\exception\DatabaseCommonException
 	 */
-	public function getProductsByFilter( int $count = 8, int $offset = 0, array $allowedCategories = [], int $lowerCost, int $upperCost ) : array
+	public function getProductsByFilter( int $count = 8, int $offset = 0, array $allowedCategories = [], int $lowerCost = null, int $upperCost = null ) : array
 	{
 		if( $allowedCategories === null || count( $allowedCategories ) === 0 )
 			return [];
@@ -48,7 +48,7 @@ class Product extends App
 			$query->and( "cost", "<=", $upperCost );
 		
 		$query->orderby( "id" )->descending();
-		$data = $query->limit( $count, $offset );
+		$data = $query->limit( $count, $offset )->get();
 		
 		$entities = [];
 		
@@ -57,4 +57,6 @@ class Product extends App
 		
 		return $entities;
 	}
+	
+	
 }

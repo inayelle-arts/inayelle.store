@@ -99,7 +99,7 @@ var Default;
         __extends(Cart, _super);
         function Cart() {
             var _this = _super.call(this, $("#cart")) || this;
-            _this.cartButton = $("#cart-button");
+            _this.cartButton = $("#open-cart-button");
             _this.cartButtonImage = $("#cart-button-image");
             _this.emptynessMessage = $("#cart-emptyness");
             _this.isOpened = false;
@@ -118,6 +118,7 @@ var Default;
         Cart.prototype.setEventHandlers = function () {
             var _this = this;
             this.cartButton.on("click", function () {
+                console.log("SOS");
                 _this.isOpened = !_this.isOpened;
                 _this.width = _this.dom.width();
                 _this.dom.on("transitionend webkitTransitionEnd oTransitionEnd", function () {
@@ -142,8 +143,6 @@ var Default;
                 }
             });
         };
-        Cart.DEFAULT_BACKGROUND = "/resources/img/background.png";
-        Cart.CART_BACKGROUND = "/resources/img/cart-background.png";
         Cart.CART_BUTTON_OPENED = "fa-times";
         Cart.CART_BUTTON_CLOSED = "fa-shopping-cart";
         return Cart;
