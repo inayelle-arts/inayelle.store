@@ -1,0 +1,11 @@
+INSERT INTO inayelle_store_db.images_storage (id, product_id, path, primary_image) VALUES (1, 1, '/d9.41479802/main.jpg', 1);
+INSERT INTO inayelle_store_db.images_storage (id, product_id, path, primary_image) VALUES (2, 2, '/c8.67599460/main.jpg', 1);
+INSERT INTO inayelle_store_db.images_storage (id, product_id, path, primary_image) VALUES (3, 3, '/99.67431272/main.jpg', 1);
+INSERT INTO inayelle_store_db.images_storage (id, product_id, path, primary_image) VALUES (4, 4, '/66.04778962/main.jpg', 1);
+INSERT INTO inayelle_store_db.images_storage (id, product_id, path, primary_image) VALUES (5, 5, '/d7.83906298/main.jpg', 1);
+INSERT INTO inayelle_store_db.images_storage (id, product_id, path, primary_image) VALUES (6, 1, '/d9.41479802/secondary.jpg', 0);
+INSERT INTO inayelle_store_db.images_storage (id, product_id, path, primary_image) VALUES (7, 6, '/11.83226198/main.jpg', 1);
+INSERT INTO inayelle_store_db.images_storage (id, product_id, path, primary_image) VALUES (13, 6, '/11.83226198/sub.jpg', 0);
+INSERT INTO inayelle_store_db.images_storage (id, product_id, path, primary_image) VALUES (14, 7, '/49.16389078/main.jpg', 1);
+INSERT INTO inayelle_store_db.images_storage (id, product_id, path, primary_image) VALUES (16, 8, '/66.97456243/sub.jpg', 0);
+INSERT INTO inayelle_store_db.images_storage (id, product_id, path, primary_image) VALUES (17, 8, '/66.97456243/main.jpg', 1);

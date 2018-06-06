@@ -1,0 +1,12 @@
+INSERT INTO inayelle_store_db.brands (id, name, description) VALUES (1, 'Victoria`s Secret', 'World famous underwear manufacturer');
+INSERT INTO inayelle_store_db.brands (id, name, description) VALUES (2, 'Polaroid', '#1 glasses in world');
+INSERT INTO inayelle_store_db.brands (id, name, description) VALUES (3, 'Domenica', 'Italy style');
+INSERT INTO inayelle_store_db.brands (id, name, description) VALUES (4, 'Golfstream', 'Outerwear at top quality');
+INSERT INTO inayelle_store_db.brands (id, name, description) VALUES (5, 'Lyle & Scott', 'Scotland old mark');
+INSERT INTO inayelle_store_db.brands (id, name, description) VALUES (6, 'Hackett', 'Genuine quintessence of English style');
+INSERT INTO inayelle_store_db.brands (id, name, description) VALUES (7, 'OXXFORD CLOTHES', 'Probably, the most expensive tuxedos in the world');
+INSERT INTO inayelle_store_db.brands (id, name, description) VALUES (8, 'Nike', 'Just do it');
+INSERT INTO inayelle_store_db.brands (id, name, description) VALUES (9, 'Adidas', 'Impossible is nothing');
+INSERT INTO inayelle_store_db.brands (id, name, description) VALUES (10, 'Rolex', 'Quality & prestige');
+INSERT INTO inayelle_store_db.brands (id, name, description) VALUES (11, 'Patek Philippe', 'Luxury on your hand');
+INSERT INTO inayelle_store_db.brands (id, name, description) VALUES (12, 'Jabong', 'Pick&Buy');

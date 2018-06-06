@@ -1,0 +1,4 @@
+INSERT INTO inayelle_store_db.users (id, email, password_hash, verify_code, reset_code, permission_id) VALUES (1, 'inayelle.arts@gmail.com', '-1081464388', '10643334035b1546c677d919.07136475', null, 4);
+INSERT INTO inayelle_store_db.users (id, email, password_hash, verify_code, reset_code, permission_id) VALUES (2, 'altashu@ukr.net', '-946852072', '3369884905b1557a95cc279.69690680', '', 4);
+INSERT INTO inayelle_store_db.users (id, email, password_hash, verify_code, reset_code, permission_id) VALUES (3, 'danarossa14@gmail.com', '1450575459', '16616320685b16f8c6a13f30.83355589', null, 4);
+INSERT INTO inayelle_store_db.users (id, email, password_hash, verify_code, reset_code, permission_id) VALUES (4, 'nekut.protsenko.o@ukr.net', '-332030452', '12370039525b16fb7c3c2508.27508813', null, 2);
