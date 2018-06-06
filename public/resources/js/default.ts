@@ -214,14 +214,15 @@ namespace Default
 			this.header = new Header();
 			this.debug = debug;
 			
-			//			if( this.debug )
-			//			{
 			this.info = $( "#debug" );
-			//			this.info.show();
-			//			}
+			if( this.debug )
+				this.info.show();
+			else
+				this.info.hide();
 			
 			let width = $( window ).width();
 			this.info.text( `XS | Width: ${width}px` );
+			
 			this.setEventHandlers();
 		}
 		
@@ -258,19 +259,6 @@ namespace Default
 				                    } );
 			}
 		}
-	}
-	
-	class SignController extends PageComponentBase
-	{
-		constructor()
-		{
-			super( $( "#" ) );
-		}
-		
-		protected setEventHandlers()
-		{
-		}
-		
 	}
 	
 	type MediaQueryHandler = () => void;
@@ -371,7 +359,7 @@ namespace Default
 	}
 	
 	let core: Core = null;
-	const DEBUG: boolean = true;
+	const DEBUG: boolean = false;
 	
 	$( () =>
 	   {

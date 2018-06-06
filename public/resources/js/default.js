@@ -153,11 +153,11 @@ var Default;
             var _this = _super.call(this, null) || this;
             _this.header = new Header();
             _this.debug = debug;
-            //			if( this.debug )
-            //			{
             _this.info = $("#debug");
-            //			this.info.show();
-            //			}
+            if (_this.debug)
+                _this.info.show();
+            else
+                _this.info.hide();
             var width = $(window).width();
             _this.info.text("XS | Width: " + width + "px");
             _this.setEventHandlers();
@@ -190,15 +190,6 @@ var Default;
             }
         };
         return Core;
-    }(PageComponentBase));
-    var SignController = /** @class */ (function (_super) {
-        __extends(SignController, _super);
-        function SignController() {
-            return _super.call(this, $("#")) || this;
-        }
-        SignController.prototype.setEventHandlers = function () {
-        };
-        return SignController;
     }(PageComponentBase));
     var MediaQuery = /** @class */ (function () {
         function MediaQuery() {
@@ -267,7 +258,7 @@ var Default;
         return MediaQuery;
     }());
     var core = null;
-    var DEBUG = true;
+    var DEBUG = false;
     $(function () {
         MediaQuery.init();
         core = new Core(DEBUG);
